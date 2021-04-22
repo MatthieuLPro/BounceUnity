@@ -7,7 +7,6 @@ public class ActionBlocker : MonoBehaviour
 
     public bool accelerationAvailable = true;
     public bool catchAvailable = true;
-    public bool changeFormAvailable = true;
     public bool jumpAvailable = true;
     public bool movementAvailable = true;
     public bool menuAvailable = true;
@@ -33,17 +32,6 @@ public class ActionBlocker : MonoBehaviour
     }
     public bool CatchIsAvailable() {
         return catchAvailable;
-    }
-
-    // Change form
-    public void EnableChangeForm() {
-        movementAvailable = true;
-    }
-    public void DisableChangeForm() {
-        movementAvailable = false;
-    }
-    public bool ChangeFormIsAvailable() {
-        return changeFormAvailable;
     }
 
     // Jump

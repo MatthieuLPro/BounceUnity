@@ -14,10 +14,6 @@ public class GameplayInputManager : MonoBehaviour
     [SerializeField]
     private CatchAction catchScript;
 
-    [Header("Change form action")]
-    [SerializeField]
-    private ChangeFormAction changeFormScript;
-
     [Header("Jump action")]
     [SerializeField]
     private JumpAction jumpScript;
@@ -76,11 +72,7 @@ public class GameplayInputManager : MonoBehaviour
     }
 
     public void OnChangeForm(InputAction.CallbackContext context) {
-        if (actionBlocker.ChangeFormIsAvailable()) {
-            if (context.started) {
-                changeFormScript.Call();
-            }
-        }
+        
     }
 
     public void OnJump(InputAction.CallbackContext context) {

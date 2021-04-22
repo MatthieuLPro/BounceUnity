@@ -5,6 +5,6 @@ using UnityEngine;
 public class ExitGame : MenuOptions
 {
     public override void Call() {
-        Debug.Log("Exit game");
+        // Application.Quit();
     }
 }

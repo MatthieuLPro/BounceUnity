@@ -8,9 +8,6 @@ public class ChangeFormAction : MonoBehaviour
     [Header("GameObject")]
     [SerializeField]
     private GameObject go;
-    [Header("BouncinessBehaviour")]
-    [SerializeField]
-    private BouncinessBehaviour bounciness;
 
     [Header("Circle material")]
     [SerializeField]

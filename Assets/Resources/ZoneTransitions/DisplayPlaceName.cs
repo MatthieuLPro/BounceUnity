@@ -19,7 +19,7 @@ public class DisplayPlaceName : MonoBehaviour
     }
 
     public void DisplayText() {
-        StartCoroutine(TextEffectCo());
+        // StartCoroutine(TextEffectCo());
     }
 
     private IEnumerator TextEffectCo() {

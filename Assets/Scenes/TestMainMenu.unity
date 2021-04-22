@@ -1047,7 +1047,7 @@ MonoBehaviour:
   - {fileID: 1704411838}
   - {fileID: 1773569546}
   moveSound: {fileID: 8300000, guid: 4bb8e6c3e1a12a4d4aa4d49293c45d36, type: 3}
-  selectSound: {fileID: 8300000, guid: e933231935530f25682bd4c0473df31e, type: 3}
+  selectSound: {fileID: 8300000, guid: dc23dd080a72fd7c6ae157e6f7f628bf, type: 3}
   selectedColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -1190,20 +1190,16 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: eb62c087-5b5d-42c7-b73d-5a78e3863ec8
-    m_ActionName: Gameplay/ChangeSizeBig[/Keyboard/3]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 5a762492-c9d6-40fb-8410-560bd70d0b9a
     m_ActionName: Gameplay/ChangeSizeSmall[/Keyboard/1]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 1241795d-7a5b-4cbf-ba9b-e58c908c6ef2
-    m_ActionName: Gameplay/ChangeSizeStandard[/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 6ad0cdf9-0991-4573-a032-151dc9c3a7b4
     m_ActionName: Gameplay/Catch[/Keyboard/alt]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 40bd7787-3e1c-4392-bdca-3ada036e7c7a
+    m_ActionName: Gameplay/ChangeSizeBig
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menus

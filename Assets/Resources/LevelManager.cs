@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -40,7 +41,8 @@ public class LevelManager : MonoBehaviour
         if (gameAnalyzer != null) {
             gameAnalyzer.ShowAnalysis();
         }
-        UnityEditor.EditorApplication.isPaused = true;
+        SceneManager.LoadScene("TestMainMenu");
+        // UnityEditor.EditorApplication.isPaused = true;
     }
 
     private void LooseConsequences() {
@@ -51,7 +53,7 @@ public class LevelManager : MonoBehaviour
             checkpoint.Call();
             looseCondition.IsLoosing = false;
         } else {
-            UnityEditor.EditorApplication.isPaused = true;
+            // UnityEditor.EditorApplication.isPaused = true;
         }
     }
 }

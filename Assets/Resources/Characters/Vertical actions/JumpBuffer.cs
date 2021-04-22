@@ -9,19 +9,12 @@ public class JumpBuffer : MonoBehaviour
     private JumpAction jumpAction;
 
     private float groundDistance;
-    private float CIRCLE_DISTANCE_OFFSET = 30f;
     private float SQUARE_DISTANCE_OFFSET = 15f;
     private bool jumpIsBuffered = false;
 
-    private Dictionary<CharacterForm.Forms, float> distanceOffsetDictionary;
-    public CharacterForm characterForm;
-
 #region Functions Unity     
     private void Start() {
-        distanceOffsetDictionary = new Dictionary<CharacterForm.Forms, float>();
-        distanceOffsetDictionary.Add(CharacterForm.Forms.Circle, CIRCLE_DISTANCE_OFFSET);
-        distanceOffsetDictionary.Add(CharacterForm.Forms.Square, SQUARE_DISTANCE_OFFSET);
-        groundDistance = collider2D.bounds.extents.y + distanceOffsetDictionary[characterForm.CurrentForm];
+        groundDistance = collider2D.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
         jumpAction = GetComponent<JumpAction>();
     }
     private void Update() {
@@ -67,8 +60,8 @@ public class JumpBuffer : MonoBehaviour
         jumpIsBuffered = false;
     }
     private void UpdateCheckDistance() {
-        if (groundDistance != collider2D.bounds.extents.y + distanceOffsetDictionary[characterForm.CurrentForm]) {
-            groundDistance = collider2D.bounds.extents.y + distanceOffsetDictionary[characterForm.CurrentForm];
+        if (groundDistance != collider2D.bounds.extents.y + SQUARE_DISTANCE_OFFSET) {
+            groundDistance = collider2D.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
         }
     }
 #endregion

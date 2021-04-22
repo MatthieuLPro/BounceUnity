@@ -60,6 +60,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ChangeSizeBig",
+                    "type": "Button",
+                    "id": "40bd7787-3e1c-4392-bdca-3ada036e7c7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -357,6 +365,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ChangeSizeSmall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6698415a-8132-4638-9c57-38101eabfcb5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeSizeBig",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
