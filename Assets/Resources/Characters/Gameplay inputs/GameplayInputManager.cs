@@ -39,7 +39,9 @@ public class GameplayInputManager : MonoBehaviour
     [SerializeField]
     private MassChanger massChanger;
 
-    public PlayerInput playerInput;
+    [Header("Player input")]
+    [SerializeField]
+    private PlayerInput playerInput;
  
 #region Functions Unity
     void Update() {
@@ -64,15 +66,12 @@ public class GameplayInputManager : MonoBehaviour
             if (context.interaction is PressInteraction) {
                 if (context.started) {
                     catchScript.Call();
-                } else if (context.canceled) {
-                    catchScript.Cancel();
+                    if (catchScript.IsCatching()) {
+                        UpdateActionMap("Catching");
+                    }
                 }
             }
         }
-    }
-
-    public void OnChangeForm(InputAction.CallbackContext context) {
-        
     }
 
     public void OnJump(InputAction.CallbackContext context) {
@@ -104,7 +103,11 @@ public class GameplayInputManager : MonoBehaviour
         if (actionBlocker.MenuIsAvailable()) {
             if (context.started) {
                 menuScript.Call();
-                UpdateActionMap();
+                if (playerInput.currentActionMap.name == "Gameplay") {
+                    UpdateActionMap("Menus");
+                } else if (playerInput.currentActionMap.name == "Menus") {
+                    UpdateActionMap("Gameplay");
+                }
             }
         }
     }
@@ -130,12 +133,8 @@ public class GameplayInputManager : MonoBehaviour
     }
 #endregion
 #region Functions private
-    private void UpdateActionMap() {
-        if (playerInput.currentActionMap.name == "Gameplay") {
-            playerInput.SwitchCurrentActionMap("Menus");
-        } else if (playerInput.currentActionMap.name == "Menus") {
-            playerInput.SwitchCurrentActionMap("Gameplay");
-        }
+    private void UpdateActionMap(string newMap) {
+        playerInput.SwitchCurrentActionMap(newMap);
     }
 #endregion    
 }

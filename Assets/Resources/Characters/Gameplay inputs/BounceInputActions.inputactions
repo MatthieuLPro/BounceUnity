@@ -2,6 +2,151 @@
     "name": "BounceInputActions",
     "maps": [
         {
+            "name": "Catching",
+            "id": "72996256-46ca-40eb-8907-edbd5eeb7d23",
+            "actions": [
+                {
+                    "name": "Catch",
+                    "type": "Button",
+                    "id": "f1e852fa-e937-4e3a-8317-76bc636fc903",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "7f9f28c9-c79e-4daa-8ed1-11db9e83ec9b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "ARROW",
+                    "id": "c1553bb8-45c3-4338-92ce-fd09278180a5",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "fae11d50-19f8-4d8c-a874-f0237632591d",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "36c0d894-ec05-475f-b2a3-9727bf4b0d98",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "424acc8e-ff4d-4e57-8ada-8ea3c12e21f5",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "b6f63cf0-a3f8-4fa1-ad31-d5e51bd98c21",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "WASD",
+                    "id": "c117e852-2341-43de-93af-dac72267490e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "c364d370-7a1c-4fe9-94e2-ddeaae35fa0d",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "aa407fb9-e8ac-4c2e-9163-b4b76c5d36d9",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "55c972f2-d1f1-4330-afeb-2a88edcf3697",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c0c479d2-2427-415c-b2b9-adb6e1fef625",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "277b7cff-b4dd-4a9f-b805-a8d09a589034",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Catch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Gameplay",
             "id": "100751eb-4e09-422e-a541-9655ac2529cd",
             "actions": [
@@ -27,15 +172,7 @@
                     "id": "6ad0cdf9-0991-4573-a032-151dc9c3a7b4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold"
-                },
-                {
-                    "name": "ChangeForm",
-                    "type": "Button",
-                    "id": "6173091f-7994-47ab-8c06-6e53cd60a09c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Jump",
@@ -282,30 +419,8 @@
                 },
                 {
                     "name": "",
-                    "id": "1e49035b-29e1-4015-b744-08a12b59d47d",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ChangeForm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "395661a8-54c3-4a8a-9d82-e59dca46d113",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "ChangeForm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d97b6d16-78bc-4b55-8568-f1cc381fb651",
-                    "path": "<Keyboard>/alt",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
