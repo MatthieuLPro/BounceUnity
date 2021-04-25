@@ -26,10 +26,10 @@ public class GameplayInputManager : MonoBehaviour
     [Header("Menu action")]
     [SerializeField]
     private MenuAction menuScript;
-    
-    [Header("Menu manager")]
+
+    [Header("Dash action")]
     [SerializeField]
-    private MenuManager menuManager;
+    private DashAction dashScript;
 
     [Header("Change size action")]
     [SerializeField]
@@ -74,6 +74,14 @@ public class GameplayInputManager : MonoBehaviour
         }
     }
 
+    public void OnDash(InputAction.CallbackContext context) {
+        if (actionBlocker.DashIsAvailable()) {
+            if (context.started) {
+                // dashScript.CallStart();
+            }
+        }
+    }
+
     public void OnJump(InputAction.CallbackContext context) {
         if (actionBlocker.JumpIsAvailable()) {
             if (context.started) {
@@ -85,13 +93,7 @@ public class GameplayInputManager : MonoBehaviour
     }
 
     public void OnMove(InputAction.CallbackContext context) {
-        if (playerInput.currentActionMap.name == "Gameplay") {
-            moveDirection = context.ReadValue<Vector2>().x;
-        } else if (playerInput.currentActionMap.name == "Menus") {
-            if (context.started) {
-                menuManager.UpdateCurrentOptionIndex(context.ReadValue<Vector2>().y);
-            }
-        }
+        moveDirection = context.ReadValue<Vector2>().x;
     }
     public void Move() {
         if (actionBlocker.MovementIsAvailable()) {
@@ -103,18 +105,8 @@ public class GameplayInputManager : MonoBehaviour
         if (actionBlocker.MenuIsAvailable()) {
             if (context.started) {
                 menuScript.Call();
-                if (playerInput.currentActionMap.name == "Gameplay") {
-                    UpdateActionMap("Menus");
-                } else if (playerInput.currentActionMap.name == "Menus") {
-                    UpdateActionMap("Gameplay");
-                }
+                UpdateActionMap("Menus");
             }
-        }
-    }
-
-    public void OnValidation(InputAction.CallbackContext context) {
-        if (context.started) {
-            menuManager.LaunchOption();
         }
     }
 

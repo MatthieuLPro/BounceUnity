@@ -22,7 +22,6 @@ public class CatchAction : MonoBehaviour
     };
     private Direction catchingDirection;
 
-
     public void Start() {
         transform = go.GetComponent<Transform>();
         rb2d = go.GetComponent<Rigidbody2D>();

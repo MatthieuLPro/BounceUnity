@@ -7,6 +7,7 @@ public class ActionBlocker : MonoBehaviour
 
     public bool accelerationAvailable = true;
     public bool catchAvailable = true;
+    public bool dashAvailable = true;
     public bool jumpAvailable = true;
     public bool movementAvailable = true;
     public bool menuAvailable = true;
@@ -32,6 +33,17 @@ public class ActionBlocker : MonoBehaviour
     }
     public bool CatchIsAvailable() {
         return catchAvailable;
+    }
+
+    // Dash
+    public void EnableDash() {
+        dashAvailable = true;
+    }
+    public void DisableDash() {
+        dashAvailable = false;
+    }
+    public bool DashIsAvailable() {
+        return dashAvailable;
     }
 
     // Jump

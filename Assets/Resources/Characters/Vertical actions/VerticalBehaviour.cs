@@ -7,15 +7,15 @@ public class VerticalBehaviour : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb2D;
     private float GRAVITY_DEFAULT = 1.0f;
-    private float GRAVITY_FALL_SQUARE = 25.0f;
-    private float GRAVITY_JUMP_SQUARE = 20.0f;
+    private float GRAVITY_FALL = 25.0f;
+    private float GRAVITY_JUMP = 20.0f;
 
 #region Unity Functions
     void FixedUpdate() {
         if (rb2D.velocity.y < -0.1f) {
-            UpdateGravity(GRAVITY_FALL_SQUARE);
+            UpdateGravity(GRAVITY_FALL);
         } else if (rb2D.velocity.y > 0.1f) {
-            UpdateGravity(GRAVITY_JUMP_SQUARE);
+            UpdateGravity(GRAVITY_JUMP);
         } else {
             ResetGravity();
         }

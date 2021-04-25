@@ -5,34 +5,29 @@ using UnityEngine.InputSystem;
 
 public class HorizontalMoveAction : MonoBehaviour
 {
-    [Header("Form")]
+    [Header("GameObject")]
     [SerializeField]
-    private CharacterForm characterForm;
+    private GameObject go;
 
-    // Need to remove verticalState because unused
-    [Header("Vertical state")]
-    [SerializeField]
-    private VerticalState verticalState;
+    private DirectionState directionState;
     private HorizontalState horizontalState;
     private Rigidbody2D rb2D;
 
-    private float maxAccelerationSpeed = 150f;
+    private float maxAccelerationSpeed = 100f;
     private float baseAccelerationThrust = 0.5f;
     
-    private float maxSpeed = 80f;
+    private float maxSpeed = 40f;
     private float baseAcceleration = 0.2f;
-
-    private float SpeedAir = 150f;
-
-    private float baseDeceleration = 0.05f;
+    private float baseDeceleration = 0.5f;
 
     private bool isRunning = false;
 
 #region Unity Functions
 
     void Awake() {
+        directionState = GetComponent<DirectionState>();
         horizontalState = GetComponent<HorizontalState>();
-        rb2D = GetComponent<Rigidbody2D>();
+        rb2D = go.GetComponent<Rigidbody2D>();
     }
 
 #endregion
@@ -40,13 +35,13 @@ public class HorizontalMoveAction : MonoBehaviour
 
     public void Call(float direction) {
         Vector2 newDirection = Vector2.zero;
-        UpdateHorizontalState(direction != 0);
-
+        horizontalState.UpdateHorizontalState(direction != 0, rb2D.velocity.x > 0 || rb2D.velocity.x < 0, isRunning);
         if (direction > 0) {
             newDirection = new Vector2(1.0f, .0f);
         } else if (direction < 0) {
             newDirection = new Vector2(-1.0f, .0f);
         }
+        // directionState.UpdateDirection(direction);
 
         if (newDirection == Vector2.zero) {
             Deceleration(newDirection);
@@ -64,18 +59,6 @@ public class HorizontalMoveAction : MonoBehaviour
     }
 #endregion
 #region Private Functions
-    private void UpdateHorizontalState(bool isMoving) {
-        if (isMoving) {
-            if (isRunning) {
-                horizontalState.CurrentState = HorizontalState.States.Running;
-            } else {
-                horizontalState.CurrentState = HorizontalState.States.Walking;
-            }
-        } else {
-            horizontalState.CurrentState = HorizontalState.States.Idle;
-        }
-    }
-
     private void Acceleration(Vector2 direction) {
         float xVelocity = rb2D.velocity.x;
         if (direction.x != 0) {

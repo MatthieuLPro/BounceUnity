@@ -14,17 +14,11 @@ public class GroundDistance : MonoBehaviour
     private VerticalState state;
     private bool isEnable = true;
     private bool jumpIsBuffered = false;
-    private bool doubleJumpPower = false;
-    private float MIN_ANGLE_SMALL = 30f;
-    private float MIN_ANGLE_STANDARD = 15f;
-    private Dictionary<SizeChanger.Sizes, float> angleDictionary; 
+    private bool doubleJumpPower = false; 
     public SizeChanger sizeChanger;
 
 #region Functions Unity     
     private void Start() {
-        angleDictionary = new Dictionary<SizeChanger.Sizes, float>();
-        angleDictionary.Add(SizeChanger.Sizes.Small, MIN_ANGLE_SMALL);
-        angleDictionary.Add(SizeChanger.Sizes.Standard, MIN_ANGLE_STANDARD);
         groundDistance = collider2D.bounds.extents.y + GROUND_DISTANCE_OFFSET;
         state = GetComponent<VerticalState>();
         jumpAction = GetComponent<JumpAction>();
