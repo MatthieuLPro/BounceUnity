@@ -2,33 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DirectionState : MonoBehaviour
-{
-    // public enum Directions {
-    //     Left,
-    //     Right
-    // }
+namespace Horizontal {
+    public class DirectionState : MonoBehaviour
+    {
+        public enum Directions {
+            Left,
+            Right
+        }
 
-    // private Directions currentDirection;
-    // public States CurrentDirection { get; set; }
+        private Dictionary<Directions, float> directionFloat;
 
-    // void Start() {
-    //     CurrentDirection = States.Right;
-    // }
+        private Directions currentDirection;
+        public Directions CurrentDirection { get; set; }
 
-    // public void UpdateDirection(float xDirection) {
-    //     if(xDirection > 0) {
-    //         CurrentDirection = Directions.Right;
-    //     } else {
-    //         CurrentDirection = Directions.Left;
-    //     }
-    // }
+    #region Unity Functions
+        void Start() {
+            CurrentDirection = Directions.Right;
+            InitDictionary();
+        }
+    #endregion
+    #region Public Functions
+        public void UpdateDirection(float xDirection) {
+            if(xDirection > 0) {
+                CurrentDirection = Directions.Right;
+            } else if (xDirection < 0) {
+                CurrentDirection = Directions.Left;
+            }
+        }
 
-    // public float DirectionToFloat() {
-    //     if(CurrentDirection == Directions.Right) {
-    //         return 1.0f;
-    //     } else if(CurrentDirection == Directions.Right) {
-    //         return -1.0f;
-    //     }
-    // }
+        public float DirectionToFloat() {
+            return directionFloat[CurrentDirection];
+        }
+
+    #endregion
+    #region Private Functions
+        private void InitDictionary() {
+            directionFloat = new Dictionary<Directions, float>();
+            directionFloat.Add(Directions.Left, -1f);
+            directionFloat.Add(Directions.Right, 1f);
+        }
+    #endregion
+    }
 }

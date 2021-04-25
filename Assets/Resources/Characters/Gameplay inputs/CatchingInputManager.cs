@@ -37,6 +37,18 @@ public class CatchingInputManager : MonoBehaviour
     }
 #endregion    
 #region Functions public
+    public void OnAcceleration(InputAction.CallbackContext context) {
+        if (actionBlocker.AccelerationIsAvailable()) {
+            if (context.interaction is PressInteraction) {
+                if (context.started) {
+                    moveScript.CallRunning();
+                } else if (context.canceled) {
+                    moveScript.CallNotRunning();
+                }
+            }
+        }
+    }
+
     public void OnCatch(InputAction.CallbackContext context) {
         if (actionBlocker.CatchIsAvailable()) {
             if (context.interaction is PressInteraction) {
@@ -64,7 +76,6 @@ public class CatchingInputManager : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context) {
         yDirection = context.ReadValue<Vector2>().y;
-        
     }
 #endregion
 #region Functions private
@@ -91,7 +102,7 @@ public class CatchingInputManager : MonoBehaviour
                         CliffJump(xDirection);
                     }
                 } else {
-                    moveScript.Call(xDirection, yDirection);
+                    moveScript.Call(yDirection);
                 }
             }
         }

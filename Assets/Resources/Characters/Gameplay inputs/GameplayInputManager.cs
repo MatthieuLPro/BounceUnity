@@ -77,7 +77,10 @@ public class GameplayInputManager : MonoBehaviour
     public void OnDash(InputAction.CallbackContext context) {
         if (actionBlocker.DashIsAvailable()) {
             if (context.started) {
-                // dashScript.CallStart();
+                if (!dashScript.IsLoading) {
+                    dashScript.CallStart();
+                    StartCoroutine(BlockActionsDuringDash());
+                } 
             }
         }
     }
@@ -125,6 +128,13 @@ public class GameplayInputManager : MonoBehaviour
     }
 #endregion
 #region Functions private
+    private IEnumerator BlockActionsDuringDash() {
+        actionBlocker.DisableMovement();
+        actionBlocker.DisableJump();
+        yield return new WaitForSeconds(0.25f);
+        actionBlocker.EnableMovement();
+        actionBlocker.EnableJump();
+    }
     private void UpdateActionMap(string newMap) {
         playerInput.SwitchCurrentActionMap(newMap);
     }

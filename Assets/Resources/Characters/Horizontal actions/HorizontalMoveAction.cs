@@ -9,7 +9,7 @@ public class HorizontalMoveAction : MonoBehaviour
     [SerializeField]
     private GameObject go;
 
-    private DirectionState directionState;
+    private Horizontal.DirectionState directionState;
     private HorizontalState horizontalState;
     private Rigidbody2D rb2D;
 
@@ -25,7 +25,7 @@ public class HorizontalMoveAction : MonoBehaviour
 #region Unity Functions
 
     void Awake() {
-        directionState = GetComponent<DirectionState>();
+        directionState = GetComponent<Horizontal.DirectionState>();
         horizontalState = GetComponent<HorizontalState>();
         rb2D = go.GetComponent<Rigidbody2D>();
     }
@@ -34,19 +34,12 @@ public class HorizontalMoveAction : MonoBehaviour
 #region Public Functions
 
     public void Call(float direction) {
-        Vector2 newDirection = Vector2.zero;
-        horizontalState.UpdateHorizontalState(direction != 0, rb2D.velocity.x > 0 || rb2D.velocity.x < 0, isRunning);
-        if (direction > 0) {
-            newDirection = new Vector2(1.0f, .0f);
-        } else if (direction < 0) {
-            newDirection = new Vector2(-1.0f, .0f);
-        }
-        // directionState.UpdateDirection(direction);
-
-        if (newDirection == Vector2.zero) {
-            Deceleration(newDirection);
+        if (direction == .0f) {
+            Deceleration();
         } else {
-            Acceleration(newDirection);
+            horizontalState.UpdateHorizontalState(direction != 0, rb2D.velocity.x > 0 || rb2D.velocity.x < 0, isRunning);
+            directionState.UpdateDirection(direction);
+            Acceleration(directionState.DirectionToFloat());
         }
     }
 
@@ -59,27 +52,25 @@ public class HorizontalMoveAction : MonoBehaviour
     }
 #endregion
 #region Private Functions
-    private void Acceleration(Vector2 direction) {
+    private void Acceleration(float direction) {
         float xVelocity = rb2D.velocity.x;
-        if (direction.x != 0) {
-            float currentMaxSpeed = .0f;
-            float currentBaseAcceleration = .0f;
-            if (horizontalState.IsRunning()) {
-                currentMaxSpeed = maxAccelerationSpeed;
-                currentBaseAcceleration = baseAccelerationThrust;
-            } else {
-                currentMaxSpeed = maxSpeed;
-                currentBaseAcceleration = baseAcceleration;    
-            }
-            if (xVelocity >= currentMaxSpeed || xVelocity <= currentMaxSpeed * -1) {
-                rb2D.velocity = new Vector2(direction.x * currentMaxSpeed, rb2D.velocity.y);
-            } else {
-                rb2D.velocity = new Vector2(xVelocity + direction.x * (currentMaxSpeed * currentBaseAcceleration), rb2D.velocity.y);
-            }
+        float currentMaxSpeed = .0f;
+        float currentBaseAcceleration = .0f;
+        if (horizontalState.IsRunning()) {
+            currentMaxSpeed = maxAccelerationSpeed;
+            currentBaseAcceleration = baseAccelerationThrust;
+        } else {
+            currentMaxSpeed = maxSpeed;
+            currentBaseAcceleration = baseAcceleration;    
+        }
+        if (xVelocity >= currentMaxSpeed || xVelocity <= currentMaxSpeed * -1) {
+            rb2D.velocity = new Vector2(direction * currentMaxSpeed, rb2D.velocity.y);
+        } else {
+            rb2D.velocity = new Vector2(xVelocity + direction * (currentMaxSpeed * currentBaseAcceleration), rb2D.velocity.y);
         }
     }
 
-    private void Deceleration(Vector2 direction) {
+    private void Deceleration() {
         float xVelocity = rb2D.velocity.x;
         float yVelocity = rb2D.velocity.y;
         if (xVelocity > 0) {

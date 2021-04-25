@@ -12,19 +12,30 @@ public class VerticalMoveAction : MonoBehaviour
     [SerializeField]
     private WallDistance wallDistance;
 
-    private float THRUST = 25.0f;
+    private Vertical.DirectionState directionState;
+    private enum MovementType {
+        Running,
+        Walking
+    }
+    private Dictionary<MovementType, float> movementThrustDictionary;
+    private MovementType currentMovementType;
+    private float RUN_THRUST = 50.0f;
+    private float WALK_THRUST = 25.0f;
 
+#region Unity Functions
+    void Start() {
+        directionState = GetComponent<Vertical.DirectionState>();
+        InitializeThrustDictionary();
+        currentMovementType = MovementType.Walking;
+    }
+#endregion
 #region Public Functions
-    public void Call(CatchAction.Direction xDirection, float yDirection) {
-        Vector2 newDirection = Vector2.zero;
-        if (yDirection > 0) {
-            newDirection = Vector2.up;
-        } else if (yDirection < 0) {
-            newDirection = Vector2.down;
-        }
-        Vector3 newVector = new Vector3(newDirection.x, newDirection.y * THRUST, transform.position.z);
+    public void Call(float yDirection) {
+        directionState.UpdateDirection(yDirection);
+        Vector3 newVector = new Vector3(.0f, directionState.DirectionInFloat() * movementThrustDictionary[currentMovementType], transform.position.z);
         transform.Translate(newVector * Time.deltaTime);
     }
+
     public bool IsInCliffEdge(CatchAction.Direction xDirection, float yDirection) {
         bool result = true;
         Vector2[] vectorsCollectionCliff = VectorsCollectionCliff(xDirection, yDirection);
@@ -36,8 +47,21 @@ public class VerticalMoveAction : MonoBehaviour
         }
         return result;
     }
+
+    public void CallRunning() {
+        currentMovementType = MovementType.Running;
+    }
+
+    public void CallNotRunning() {
+        currentMovementType = MovementType.Walking;
+    }
 #endregion
 #region Private Functions
+    private void InitializeThrustDictionary() {
+        movementThrustDictionary = new Dictionary<MovementType, float>();
+        movementThrustDictionary.Add(MovementType.Running, RUN_THRUST);
+        movementThrustDictionary.Add(MovementType.Walking, WALK_THRUST);
+    }
     // We need to check if the object is in contact with the cliff 
     private Vector2[] VectorsCollectionCliff(CatchAction.Direction xDirection, float yDirection) {
         switch (xDirection)
@@ -58,7 +82,6 @@ public class VerticalMoveAction : MonoBehaviour
                 break;
         }
     }
-
     // We need to check if the object is in contact with a roof or a floor
     private Vector2[] VectorsCollectionTopAndDown(float yDirection) {
         if (yDirection > 0) {
