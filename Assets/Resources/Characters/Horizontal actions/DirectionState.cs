@@ -11,6 +11,7 @@ namespace Horizontal {
         }
 
         private Dictionary<Directions, float> directionFloat;
+        private Dictionary<Directions, float> directionAnimatorFloat;
 
         private Directions currentDirection;
         public Directions CurrentDirection { get; set; }
@@ -19,6 +20,7 @@ namespace Horizontal {
         void Start() {
             CurrentDirection = Directions.Right;
             InitDictionary();
+            InitAnimatorDictionary();
         }
     #endregion
     #region Public Functions
@@ -34,8 +36,17 @@ namespace Horizontal {
             return directionFloat[CurrentDirection];
         }
 
+        public float DirectionToAnimatorFloat() {
+            return directionAnimatorFloat[CurrentDirection];
+        }
+
     #endregion
     #region Private Functions
+        private void InitAnimatorDictionary() {
+            directionAnimatorFloat = new Dictionary<Directions, float>();
+            directionAnimatorFloat.Add(Directions.Left, 0f);
+            directionAnimatorFloat.Add(Directions.Right, 1f);
+        }
         private void InitDictionary() {
             directionFloat = new Dictionary<Directions, float>();
             directionFloat.Add(Directions.Left, -1f);

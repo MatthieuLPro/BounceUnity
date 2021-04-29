@@ -51,7 +51,7 @@ public class JumpAction : MonoBehaviour
             StopTripleJumpBuffer();
             IncreaseJumpVelocity(Vector2.up, VERTICAL_THRUSTS[thrust_index]);
             StartTripleJumpBuffer();
-        } else if (stateMachine.IsJumping()) {
+        } else if (stateMachine.IsJumping() || stateMachine.IsFalling()) {
             JumpBuffer();
         }
     }

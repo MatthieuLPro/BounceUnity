@@ -10,7 +10,12 @@ public class VerticalBehaviour : MonoBehaviour
     private float GRAVITY_FALL = 25.0f;
     private float GRAVITY_JUMP = 20.0f;
 
+    private VerticalState stateMachine;
+
 #region Unity Functions
+    void Start() {
+        stateMachine = GetComponent<VerticalState>();
+    }
     void FixedUpdate() {
         if (rb2D.velocity.y < -0.1f) {
             UpdateGravity(GRAVITY_FALL);

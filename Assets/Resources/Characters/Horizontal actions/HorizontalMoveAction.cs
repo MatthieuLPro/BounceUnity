@@ -23,7 +23,6 @@ public class HorizontalMoveAction : MonoBehaviour
     private bool isRunning = false;
 
 #region Unity Functions
-
     void Awake() {
         directionState = GetComponent<Horizontal.DirectionState>();
         horizontalState = GetComponent<HorizontalState>();
@@ -35,7 +34,11 @@ public class HorizontalMoveAction : MonoBehaviour
 
     public void Call(float direction) {
         if (direction == .0f) {
-            Deceleration();
+            if (rb2D.velocity.x > 0 || rb2D.velocity.x < 0 ) {
+                Deceleration();
+            } else {
+                horizontalState.CurrentState = HorizontalState.States.Idle;
+            }
         } else {
             horizontalState.UpdateHorizontalState(direction != 0, rb2D.velocity.x > 0 || rb2D.velocity.x < 0, isRunning);
             directionState.UpdateDirection(direction);

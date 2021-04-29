@@ -42,6 +42,10 @@ public class GameplayInputManager : MonoBehaviour
     [Header("Player input")]
     [SerializeField]
     private PlayerInput playerInput;
+
+    [Header("Animator")]
+    [SerializeField]
+    private Animator animator;
  
 #region Functions Unity
     void Update() {
