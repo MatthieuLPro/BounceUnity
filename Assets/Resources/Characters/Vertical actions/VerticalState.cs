@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class VerticalState : MonoBehaviour
 {
-    // Falling is used?
+    [Header("Rigidbody")]
+    [SerializeField]
+    private Rigidbody2D rb2D;
     public enum States {
         Falling,
         Jumping,
         Standing
     }
 
+    private States previousState;
     private States currentState;
-
-    void Start() {
-        CurrentState = States.Standing;
-    }
-
     public States CurrentState { get; set; }
 
+#region Unity Functions
+    void Start() {
+        CurrentState = States.Standing;
+        previousState = CurrentState;
+    }
+
+    void FixedUpdate() {
+        if (rb2D.velocity.y < -0.1f && !IsFalling()) {
+            previousState = CurrentState;
+            CurrentState = VerticalState.States.Falling;
+        }
+    }
+#endregion
+#region Public Functions
     public bool IsFalling() {
         return CurrentState == States.Falling;
     }
@@ -30,4 +42,5 @@ public class VerticalState : MonoBehaviour
     public bool IsStanding() {
         return CurrentState == States.Standing;
     }
+#endregion
 }

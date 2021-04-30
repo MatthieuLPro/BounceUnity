@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class VerticalBehaviour : MonoBehaviour
+public class CharacterGravity : MonoBehaviour
 {
     [Header("Rigidbody")]
     [SerializeField]

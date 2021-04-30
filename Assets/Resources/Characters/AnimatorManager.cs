@@ -27,6 +27,7 @@ public class AnimatorManager : MonoBehaviour
     {
         UpdateBoolState("isWalking", xState.IsWalking());
         UpdateBoolState("isJumping", yState.IsJumping());
+        UpdateBoolState("isFalling", yState.IsFalling());
         
         UpdateFloatState("xDirection", xDirection.DirectionToAnimatorFloat());
     }

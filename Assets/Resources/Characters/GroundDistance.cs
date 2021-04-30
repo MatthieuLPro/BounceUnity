@@ -35,7 +35,7 @@ public class GroundDistance : MonoBehaviour
                     jumpBuffer.ResetBuffer();
                 }
             } else {
-                state.CurrentState = VerticalState.States.Jumping;
+                // state.CurrentState = VerticalState.States.Jumping;
             }
         }
     }
