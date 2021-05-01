@@ -7,6 +7,11 @@ public class VerticalState : MonoBehaviour
     [Header("Rigidbody")]
     [SerializeField]
     private Rigidbody2D rb2D;
+
+    [Header("CatchAction")]
+    [SerializeField]
+    private CatchAction catchAction;
+
     public enum States {
         Falling,
         Jumping,
@@ -24,7 +29,7 @@ public class VerticalState : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (rb2D.velocity.y < -0.1f && !IsFalling()) {
+        if (rb2D.velocity.y < -0.1f && !IsFalling() && !catchAction.IsCatching()) {
             previousState = CurrentState;
             CurrentState = VerticalState.States.Falling;
         }

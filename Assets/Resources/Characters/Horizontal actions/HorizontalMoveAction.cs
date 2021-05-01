@@ -36,9 +36,8 @@ public class HorizontalMoveAction : MonoBehaviour
         if (direction == .0f) {
             if (rb2D.velocity.x > 0 || rb2D.velocity.x < 0 ) {
                 Deceleration();
-            } else {
-                horizontalState.CurrentState = HorizontalState.States.Idle;
             }
+            horizontalState.CurrentState = HorizontalState.States.Idle;
         } else {
             horizontalState.UpdateHorizontalState(direction != 0, rb2D.velocity.x > 0 || rb2D.velocity.x < 0, isRunning);
             directionState.UpdateDirection(direction);

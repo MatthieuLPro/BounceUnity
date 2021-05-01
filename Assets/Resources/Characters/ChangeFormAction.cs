@@ -26,12 +26,12 @@ public class ChangeFormAction : MonoBehaviour
     [SerializeField]
     private PhysicsMaterial2D standardMaterial;
 
-    private CircleCollider2D collider;
+    private PolygonCollider2D collider;
     private SpriteRenderer sprite;
     private CharacterForm characterForm;
     void Awake() {
         characterForm = GetComponent<CharacterForm>();
-        collider = go.GetComponent<CircleCollider2D>();
+        collider = go.GetComponent<PolygonCollider2D>();
         sprite = go.GetComponent<SpriteRenderer>();
         CircleForm();
     }

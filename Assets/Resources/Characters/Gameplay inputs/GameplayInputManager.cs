@@ -48,7 +48,7 @@ public class GameplayInputManager : MonoBehaviour
     private Animator animator;
  
 #region Functions Unity
-    void Update() {
+    void FixedUpdate() {
         Move();
     }
 #endregion

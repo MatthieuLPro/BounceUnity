@@ -5,12 +5,12 @@ using UnityEngine;
 public class GroundDistance : MonoBehaviour
 {
     public LayerMask groundLayers;
-    public Collider2D collider2D;
+    public PolygonCollider2D collider;
     private JumpAction jumpAction;
     private JumpBuffer jumpBuffer;
 
     private float groundDistance;
-    private float GROUND_DISTANCE_OFFSET = 1.85f;
+    private float GROUND_DISTANCE_OFFSET = 3f;
     private VerticalState state;
     private bool isEnable = true;
     private bool jumpIsBuffered = false;
@@ -19,7 +19,7 @@ public class GroundDistance : MonoBehaviour
 
 #region Functions Unity     
     private void Start() {
-        groundDistance = collider2D.bounds.extents.y + GROUND_DISTANCE_OFFSET;
+        groundDistance = collider.bounds.extents.y + GROUND_DISTANCE_OFFSET;
         state = GetComponent<VerticalState>();
         jumpAction = GetComponent<JumpAction>();
         jumpBuffer = GetComponent<JumpBuffer>();
@@ -34,8 +34,6 @@ public class GroundDistance : MonoBehaviour
                     jumpAction.CallBuffer();
                     jumpBuffer.ResetBuffer();
                 }
-            } else {
-                // state.CurrentState = VerticalState.States.Jumping;
             }
         }
     }
@@ -48,8 +46,8 @@ public class GroundDistance : MonoBehaviour
     }
 
     public void UpdateCheckDistance() {
-        if (groundDistance != collider2D.bounds.extents.y + GROUND_DISTANCE_OFFSET) {
-            groundDistance = collider2D.bounds.extents.y + GROUND_DISTANCE_OFFSET;
+        if (groundDistance != collider.bounds.extents.y + GROUND_DISTANCE_OFFSET) {
+            groundDistance = collider.bounds.extents.y + GROUND_DISTANCE_OFFSET;
         }
     }
 

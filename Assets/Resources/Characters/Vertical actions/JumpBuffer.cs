@@ -5,7 +5,7 @@ using UnityEngine;
 public class JumpBuffer : MonoBehaviour
 {
     public LayerMask groundLayers;
-    public Collider2D collider2D;
+    public PolygonCollider2D collider;
     private JumpAction jumpAction;
 
     private float groundDistance;
@@ -14,7 +14,7 @@ public class JumpBuffer : MonoBehaviour
 
 #region Functions Unity     
     private void Start() {
-        groundDistance = collider2D.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
+        groundDistance = collider.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
         jumpAction = GetComponent<JumpAction>();
     }
     private void Update() {
@@ -60,8 +60,8 @@ public class JumpBuffer : MonoBehaviour
         jumpIsBuffered = false;
     }
     private void UpdateCheckDistance() {
-        if (groundDistance != collider2D.bounds.extents.y + SQUARE_DISTANCE_OFFSET) {
-            groundDistance = collider2D.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
+        if (groundDistance != collider.bounds.extents.y + SQUARE_DISTANCE_OFFSET) {
+            groundDistance = collider.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
         }
     }
 #endregion

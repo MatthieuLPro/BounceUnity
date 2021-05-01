@@ -8,10 +8,13 @@ public class CatchAction : MonoBehaviour
 {
     [Header("Game object")]
     [SerializeField]
-    private GameObject go;
-    private Transform transform; 
+    private GameObject go; 
+
+    [Header("Horizontal direction")]
+    [SerializeField]
+    private Horizontal.DirectionState horizontalDirectionState;
+
     private Rigidbody2D rb2d;
-    private PlayerInput playerInput;
     private WallDistance wallDistance;
     private bool isCatching;
 
@@ -23,10 +26,8 @@ public class CatchAction : MonoBehaviour
     private Direction catchingDirection;
 
     public void Start() {
-        transform = go.GetComponent<Transform>();
         rb2d = go.GetComponent<Rigidbody2D>();
         wallDistance = GetComponent<WallDistance>();
-        playerInput = GetComponent<PlayerInput>();
 
         isCatching = false;
         catchingDirection = Direction.None;
@@ -54,17 +55,18 @@ public class CatchAction : MonoBehaviour
     // Should call specific function depending of the 
     // Movement direction
     private void StartCatch() {
-        if (wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.left })) {
+        if (horizontalDirectionState.CurrentDirection == Horizontal.DirectionState.Directions.Left && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.left })) {
             rb2d.velocity = Vector2.zero;
             rb2d.bodyType = RigidbodyType2D.Kinematic;
             isCatching = true;
             catchingDirection = Direction.Left;
-        } else if (wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.right })){
+        } else if (horizontalDirectionState.CurrentDirection == Horizontal.DirectionState.Directions.Right && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.right })){
             rb2d.velocity = Vector2.zero;
             rb2d.bodyType = RigidbodyType2D.Kinematic;
             isCatching = true;
             catchingDirection = Direction.Right;
         } else {
+            rb2d.bodyType = RigidbodyType2D.Dynamic;
             isCatching = false;
             catchingDirection = Direction.None;
         }

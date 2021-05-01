@@ -11,7 +11,7 @@ public class WallDistance : MonoBehaviour
     [SerializeField]
     private LayerMask wallLayer;
     private Transform transform;
-    private Collider2D collider2D;
+    private PolygonCollider2D collider;
     private float distanceBetween;
     private float WALL_DISTANCE_OFFSET = 1.85f;
 
@@ -19,7 +19,7 @@ public class WallDistance : MonoBehaviour
     void Start()
     {
         transform = go.GetComponent<Transform>();
-        collider2D = go.GetComponent<Collider2D>();
+        collider = go.GetComponent<PolygonCollider2D>();
     }
 
     void FixedUpdate()
@@ -48,17 +48,17 @@ public class WallDistance : MonoBehaviour
         return rays;
     }
     private void UpdateCheckDistance() {
-        if (distanceBetween != collider2D.bounds.extents.y + WALL_DISTANCE_OFFSET) {
-            distanceBetween = collider2D.bounds.extents.y + WALL_DISTANCE_OFFSET;
+        if (distanceBetween != collider.bounds.extents.y + WALL_DISTANCE_OFFSET) {
+            distanceBetween = collider.bounds.extents.y + WALL_DISTANCE_OFFSET;
         }
     }
     private bool IsInContact(Ray2D ray, float distance, LayerMask layer) {
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, distance, layer);
         if(hit) {
-            Debug.DrawLine(ray.origin, hit.point, Color.green);
+            // Debug.DrawLine(ray.origin, hit.point, Color.green);
             return true;
         } else {
-            Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
+            // Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
             return false;
         }
     }
