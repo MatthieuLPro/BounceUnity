@@ -22,11 +22,15 @@ public class VerticalMoveAction : MonoBehaviour
     private float RUN_THRUST = 50.0f;
     private float WALK_THRUST = 25.0f;
 
+    private bool isMoving;
+    public bool IsMoving { get; set; }
+
 #region Unity Functions
     void Start() {
         directionState = GetComponent<Vertical.DirectionState>();
         InitializeThrustDictionary();
         currentMovementType = MovementType.Walking;
+        isMoving = false;
     }
 #endregion
 #region Public Functions

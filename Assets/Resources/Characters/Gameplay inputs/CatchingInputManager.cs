@@ -102,8 +102,11 @@ public class CatchingInputManager : MonoBehaviour
                         CliffJump(xDirection);
                     }
                 } else {
+                    moveScript.IsMoving = true;
                     moveScript.Call(yDirection);
                 }
+            } else {
+                moveScript.IsMoving = false;
             }
         }
     }

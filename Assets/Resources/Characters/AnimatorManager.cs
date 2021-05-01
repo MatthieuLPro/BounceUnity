@@ -15,6 +15,14 @@ public class AnimatorManager : MonoBehaviour
     [Header("Vertical state")]
     [SerializeField]
     private VerticalState yState;
+
+    [Header("Catch state")]
+    [SerializeField]
+    private CatchAction catchState;
+
+    [Header("Vertical Movement")]
+    [SerializeField]
+    private VerticalMoveAction verticalMoveState;
     
     private Animator animator;
 
@@ -25,10 +33,25 @@ public class AnimatorManager : MonoBehaviour
 
     void Update()
     {
-        UpdateBoolState("isWalking", xState.IsWalking());
-        UpdateBoolState("isJumping", yState.IsJumping());
-        UpdateBoolState("isFalling", yState.IsFalling());
-        
+        UpdateBoolState("isCatching", catchState.IsCatching());
+        if (catchState.IsCatching()) {
+            UpdateBoolState("isCatchingMoving", verticalMoveState.IsMoving);
+
+            UpdateBoolState("isWalking", false);
+            UpdateBoolState("isRunning", false);
+
+            UpdateBoolState("isJumping", false);
+            UpdateBoolState("isFalling", false);
+        } else {
+            UpdateBoolState("isCatchingMoving", false);
+
+            UpdateBoolState("isWalking", xState.IsWalking());
+            UpdateBoolState("isRunning", xState.IsRunning());
+
+            UpdateBoolState("isJumping", yState.IsJumping());
+            UpdateBoolState("isFalling", yState.IsFalling());
+        }
+
         UpdateFloatState("xDirection", xDirection.DirectionToAnimatorFloat());
     }
 #endregion

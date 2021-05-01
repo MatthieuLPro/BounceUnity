@@ -50,6 +50,7 @@ MonoBehaviour:
   moveScript: {fileID: 2602235143676969020}
   jumpScript: {fileID: 4103918216960457158}
   playerInput: {fileID: 5145931101355346448}
+  HorizontaldirectionState: {fileID: 8415344020814934720}
 --- !u!114 &6969102619229774357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -672,6 +673,8 @@ MonoBehaviour:
   xDirection: {fileID: 8415344020814934720}
   xState: {fileID: 5344148968516086136}
   yState: {fileID: 4103918216960457156}
+  catchState: {fileID: 8104183678540985479}
+  verticalMoveState: {fileID: 2602235143676969020}
 --- !u!1 &4103918216960457160
 GameObject:
   m_ObjectHideFlags: 0
