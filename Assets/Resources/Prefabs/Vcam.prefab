@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.3
+  m_LookaheadTime: 1
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
   m_XDamping: 1
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 150
+    OrthographicSize: 80
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
