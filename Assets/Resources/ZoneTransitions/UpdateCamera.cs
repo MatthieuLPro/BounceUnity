@@ -17,11 +17,6 @@ public class UpdateCamera : MonoBehaviour
         if (collider.tag == "Player" && gameObject != virtualCameraToActivate && !virtualCameraToActivate.activeSelf) {
             virtualCamerasToDesactivate.SetActive(false);
             virtualCameraToActivate.SetActive(true);
-            CallDisplayPlaceName();
         }
-    }
-
-    private void CallDisplayPlaceName() {
-        GetComponent<DisplayPlaceName>().DisplayText();
     }
 }

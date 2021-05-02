@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4150527692253392789}
+  - component: {fileID: 6115620466209482780}
   - component: {fileID: 4794476295902454442}
   - component: {fileID: 6969102619229774357}
   - component: {fileID: 3785079182304387877}
@@ -33,6 +34,18 @@ Transform:
   m_Father: {fileID: 4103918215236985874}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6115620466209482780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485745557786827937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70187556421a8ce469cfcfa87524d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4794476295902454442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,7 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb06ec8184b2009caffb405fca12028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionBlocker: {fileID: 6403292261988944153}
   catchScript: {fileID: 8104183678540985479}
   moveScript: {fileID: 2602235143676969020}
   jumpScript: {fileID: 4103918216960457158}
@@ -62,7 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ca0a7296ece3e05897765d93d0afe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionBlocker: {fileID: 6403292261988944153}
   catchScript: {fileID: 8104183678540985479}
   jumpScript: {fileID: 4103918216960457158}
   moveScript: {fileID: 9134920572593286310}
@@ -205,7 +216,6 @@ GameObject:
   - component: {fileID: 4103918215236985874}
   - component: {fileID: 4103918215236985875}
   - component: {fileID: 4103918215236985873}
-  - component: {fileID: 6403292261988944153}
   - component: {fileID: 1937189169668423056}
   - component: {fileID: 5145931101355346448}
   - component: {fileID: 7053522629067849960}
@@ -310,25 +320,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6403292261988944153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4103918215236985877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017e450889642846a9ec5a528f2da297, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  accelerationAvailable: 1
-  catchAvailable: 1
-  dashAvailable: 1
-  jumpAvailable: 1
-  movementAvailable: 1
-  menuAvailable: 1
-  smallSizeAvailable: 0
 --- !u!114 &1937189169668423056
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,9 +6,6 @@ using UnityEngine.InputSystem.Interactions;
 
 public class CatchingInputManager : MonoBehaviour
 {
-    [Header("Action blocker")]
-    [SerializeField]
-    private ActionBlocker actionBlocker;
     [Header("Catch action")]
     [SerializeField]
     private CatchAction catchScript;
@@ -23,10 +20,14 @@ public class CatchingInputManager : MonoBehaviour
     [SerializeField]
     private PlayerInput playerInput;
 
+    private ActionsManager actionsManager;
+
     private Dictionary<CatchAction.Direction, Vector2> jumpDirection;
 
 #region Functions Unity
     void Start() {
+        actionsManager = GetComponent<ActionsManager>();
+
         jumpDirection = new Dictionary<CatchAction.Direction, Vector2>();
         jumpDirection.Add(CatchAction.Direction.Right, new Vector2(-1.0f, 0.5f));
         jumpDirection.Add(CatchAction.Direction.Left, new Vector2(1.0f, 0.5f));
@@ -38,7 +39,7 @@ public class CatchingInputManager : MonoBehaviour
 #endregion    
 #region Functions public
     public void OnAcceleration(InputAction.CallbackContext context) {
-        if (actionBlocker.AccelerationIsAvailable()) {
+        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Acceleration)) {
             if (context.interaction is PressInteraction) {
                 if (context.started) {
                     moveScript.CallRunning();
@@ -50,7 +51,7 @@ public class CatchingInputManager : MonoBehaviour
     }
 
     public void OnCatch(InputAction.CallbackContext context) {
-        if (actionBlocker.CatchIsAvailable()) {
+        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Catch)) {
             if (context.interaction is PressInteraction) {
                 if (context.started) {
                     catchScript.Cancel();
@@ -61,7 +62,7 @@ public class CatchingInputManager : MonoBehaviour
     }
 
     public void OnJump(InputAction.CallbackContext context) {
-        if (actionBlocker.JumpIsAvailable()) {
+        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Jump)) {
             if (context.interaction is PressInteraction) {
                 if (context.started) {
                     Vector2 direction = jumpDirection[catchScript.CurrentDirection()];
@@ -80,12 +81,12 @@ public class CatchingInputManager : MonoBehaviour
 #endregion
 #region Functions private
     private IEnumerator BlockHorizontalMovement() {
-        actionBlocker.DisableMovement();
+        actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, false);
         yield return new WaitForSeconds(0.25f);
-        actionBlocker.EnableMovement();
+        actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, true);
     }
     private void CliffJump(CatchAction.Direction xDirection) {
-        if (actionBlocker.MovementIsAvailable()) {
+        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
             Vector2 yVector = jumpDirection[xDirection];
             catchScript.Cancel();
             jumpScript.CallStartCatchingCliff(yVector);
@@ -94,7 +95,7 @@ public class CatchingInputManager : MonoBehaviour
         }
     }
     private void Move() {
-        if (actionBlocker.MovementIsAvailable()) {
+        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
             CatchAction.Direction xDirection = catchScript.CurrentDirection();
             if (yDirection != .0f) {
                 if (moveScript.IsInCliffEdge(xDirection, yDirection)) {

@@ -4,42 +4,19 @@ using UnityEngine;
 
 public class PowerActivator : MonoBehaviour
 {
-    public enum Powers {
-        SmallSize
-    }
+    public ActionsManager.Actions actionToActivate;
 
-    public Powers powerToActivate;
-
+#region Unity Functions
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.tag == "Player") {
-            EnablePower(collider.gameObject.GetComponent<ActionBlocker>());
+            EnablePower(collider.gameObject.GetComponentInChildren<ActionsManager>());
             Destroy(gameObject);
         }
     }
-
+#endregion
 #region Functions Private
-    private void EnablePower(ActionBlocker actionBlocker) {
-        switch (powerToActivate)
-        {
-            case Powers.SmallSize:
-                actionBlocker.EnableSmallSize();
-                break;
-            default:
-                Debug.Log("No function is set to enable");
-                break;
-        }
-    }
-
-    private void DisablePower(ActionBlocker actionBlocker) {
-        switch (powerToActivate)
-        {
-            case Powers.SmallSize:
-                actionBlocker.DisableSmallSize();
-                break;
-            default:
-                Debug.Log("No function is set to disable");
-                break;
-        }
+    private void EnablePower(ActionsManager actionsManager) {
+        actionsManager.AuthorizeNewAction(actionToActivate);
     }
 #endregion
 }

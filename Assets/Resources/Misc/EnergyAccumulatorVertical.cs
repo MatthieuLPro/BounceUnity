@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Hellmade.Sound;
 
+// Is not used, to remove ?
 public class EnergyAccumulatorVertical : MonoBehaviour
 {
     [Header("Maximum energy")]
@@ -33,7 +34,7 @@ public class EnergyAccumulatorVertical : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.tag == "Bottom") {
             rb2D = collider.gameObject.transform.parent.GetComponent<Rigidbody2D>();
-            collider.gameObject.transform.parent.GetComponent<ActionBlocker>().DisableJump();
+            // collider.gameObject.transform.parent.GetComponent<ActionBlocker>().DisableJump();
             accumulatorIsTriggered = true;
         }
     }
@@ -46,7 +47,7 @@ public class EnergyAccumulatorVertical : MonoBehaviour
 
     private IEnumerator ResetCo(Collider2D collider) {
         yield return new WaitForSeconds(0.1f);
-        collider.gameObject.transform.parent.GetComponent<ActionBlocker>().EnableJump();
+        // collider.gameObject.transform.parent.GetComponent<ActionBlocker>().EnableJump();
         rb2D = null;
         accumulatorIsTriggered = false;
         accumulatedEnergy = .0f;

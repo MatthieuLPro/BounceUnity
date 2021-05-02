@@ -22,19 +22,13 @@ public class UpdateCameraWithTransition : MonoBehaviour
         if (collider.tag == "Player" && gameObject != virtualCameraToActivate) {
             StartCoroutine(TransitionEffectCo());
         }
-
     }
 
     private IEnumerator TransitionEffectCo() {
         transitionVirtualCamera.SetActive(true);
-        virtualCameraToDesactivate.SetActive(false);
         yield return new WaitForSeconds(1f);
-        transitionVirtualCamera.SetActive(false);
         virtualCameraToActivate.SetActive(true);
-        CallDisplayPlaceName();
-    }
-
-    private void CallDisplayPlaceName() {
-        GetComponent<DisplayPlaceName>().DisplayText();
+        transitionVirtualCamera.SetActive(false);
+        virtualCameraToDesactivate.SetActive(false);
     }
 }
