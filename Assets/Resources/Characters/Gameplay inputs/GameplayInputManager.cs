@@ -64,6 +64,8 @@ public class GameplayInputManager : MonoBehaviour
                     moveScript.CallNotRunning();
                 }
             }
+        } else {
+            moveScript.CallNotRunning();
         }
     }
 
@@ -107,6 +109,8 @@ public class GameplayInputManager : MonoBehaviour
     public void Move() {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
             moveScript.Call(moveDirection);
+        } else if (!actionsManager.ActionShouldFinished(ActionsManager.Actions.HorizontalMove)) {
+            moveScript.Call(0f);
         }
     }
 

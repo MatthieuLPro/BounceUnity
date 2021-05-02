@@ -16,6 +16,7 @@ public class ActionsManager : MonoBehaviour
 
     private List<Actions> authorizedActions;
     private Dictionary<Actions, bool> actionsStatement;
+    private Dictionary<Actions, bool> actionFollowing;
     
 #region Unity Functions
     void Start()
@@ -23,11 +24,23 @@ public class ActionsManager : MonoBehaviour
         InitActionsDictionary();
         InitAuthorizedActions();
         UpdateAllAuthorizedActions(true);
+        actionFollowing = new Dictionary<Actions, bool>();
     }
 #endregion
 #region Public Functions
     public bool ActionIsAvailable(Actions action) {
         return actionsStatement[action];
+    }
+
+    // TODO : Finir comment gérer une action qui DOIT finir
+    // Remove le dictionnaire actionFollowing ?
+    public bool ActionShouldFinished(Actions action) {
+        return actionFollowing[action];
+    }
+
+    public void ActionWillFinish(Actions action, float seconds) {
+        actionFollowing.Add(action, true);
+        CancelAction(seconds, action);
     }
 
     public void AuthorizeNewAction(Actions action) {
@@ -47,6 +60,10 @@ public class ActionsManager : MonoBehaviour
     }
 #endregion
 #region Private Functions
+    private IEnumerator CancelAction(float seconds, Actions action) {
+        yield return new WaitForSeconds(seconds);
+        actionFollowing.Remove(action);
+    }
     private void InitActionsDictionary() {
         actionsStatement = new Dictionary<Actions, bool>();
         // TODO : Loop on the enum

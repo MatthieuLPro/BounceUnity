@@ -82,6 +82,7 @@ public class CatchingInputManager : MonoBehaviour
 #region Functions private
     private IEnumerator BlockHorizontalMovement() {
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, false);
+        actionsManager.ActionWillFinish(ActionsManager.Actions.HorizontalMove, 2.0f);
         yield return new WaitForSeconds(0.25f);
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, true);
     }

@@ -20,15 +20,17 @@ public class UpdateCameraWithTransition : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player" && gameObject != virtualCameraToActivate) {
-            StartCoroutine(TransitionEffectCo());
+            StartCoroutine(TransitionEffectCo(collider.gameObject.GetComponentInChildren<ActionsManager>()));
         }
     }
 
-    private IEnumerator TransitionEffectCo() {
+    private IEnumerator TransitionEffectCo(ActionsManager actionsManager) {
         transitionVirtualCamera.SetActive(true);
+        actionsManager.UpdateAllAuthorizedActions(false);
         yield return new WaitForSeconds(1f);
         virtualCameraToActivate.SetActive(true);
         transitionVirtualCamera.SetActive(false);
+        actionsManager.UpdateAllAuthorizedActions(true);
         virtualCameraToDesactivate.SetActive(false);
     }
 }
