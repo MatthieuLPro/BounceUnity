@@ -109,7 +109,7 @@ public class GameplayInputManager : MonoBehaviour
     public void Move() {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
             moveScript.Call(moveDirection);
-        } else if (!actionsManager.ActionShouldFinished(ActionsManager.Actions.HorizontalMove)) {
+        } else if (actionsManager.ActionIsFinish(ActionsManager.Actions.HorizontalMove)) {
             moveScript.Call(0f);
         }
     }

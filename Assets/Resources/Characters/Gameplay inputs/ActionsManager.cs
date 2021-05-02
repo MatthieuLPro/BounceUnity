@@ -16,7 +16,7 @@ public class ActionsManager : MonoBehaviour
 
     private List<Actions> authorizedActions;
     private Dictionary<Actions, bool> actionsStatement;
-    private Dictionary<Actions, bool> actionFollowing;
+    private Dictionary<Actions, bool> actionToFinish;
     
 #region Unity Functions
     void Start()
@@ -24,7 +24,7 @@ public class ActionsManager : MonoBehaviour
         InitActionsDictionary();
         InitAuthorizedActions();
         UpdateAllAuthorizedActions(true);
-        actionFollowing = new Dictionary<Actions, bool>();
+        actionToFinish = new Dictionary<Actions, bool>();
     }
 #endregion
 #region Public Functions
@@ -32,15 +32,13 @@ public class ActionsManager : MonoBehaviour
         return actionsStatement[action];
     }
 
-    // TODO : Finir comment gérer une action qui DOIT finir
-    // Remove le dictionnaire actionFollowing ?
-    public bool ActionShouldFinished(Actions action) {
-        return actionFollowing[action];
-    }
-
-    public void ActionWillFinish(Actions action, float seconds) {
-        actionFollowing.Add(action, true);
-        CancelAction(seconds, action);
+    // Verify if the action is finish
+    public bool ActionIsFinish(Actions action) {
+        if (actionToFinish.ContainsKey(action)) {
+            return actionToFinish[action];
+        } else {
+            return true;
+        }
     }
 
     public void AuthorizeNewAction(Actions action) {
@@ -55,15 +53,25 @@ public class ActionsManager : MonoBehaviour
         }
     }
 
+    // 1. The action is set at "To be finished"
+    // 2. Then we start the waiting (Coroutine)
+    // 3. The coroutine sets the action "Finished"
+    public void SetDelayToFinishAction(Actions action, float seconds) {
+        actionToFinish.Add(action, false);
+        StartCoroutine(StartWaitingBeforeRemove(seconds, action));
+    }
+
     public void UpdateAuthorizedAction(Actions action, bool newState) {
         actionsStatement[action] = newState;
     }
 #endregion
 #region Private Functions
-    private IEnumerator CancelAction(float seconds, Actions action) {
+    // This function remove the finished action
+    private IEnumerator StartWaitingBeforeRemove(float seconds, Actions action) {
         yield return new WaitForSeconds(seconds);
-        actionFollowing.Remove(action);
+        actionToFinish.Remove(action);
     }
+
     private void InitActionsDictionary() {
         actionsStatement = new Dictionary<Actions, bool>();
         // TODO : Loop on the enum

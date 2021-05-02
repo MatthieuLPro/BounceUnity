@@ -17,20 +17,23 @@ public class UpdateCameraWithTransition : MonoBehaviour
     [SerializeField]
     private GameObject transitionVirtualCamera;
 
+    [Header("Transition Manager")]
+    [SerializeField]
+    private TransitionManager transitionManager;
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player" && gameObject != virtualCameraToActivate) {
-            StartCoroutine(TransitionEffectCo(collider.gameObject.GetComponentInChildren<ActionsManager>()));
+            StartCoroutine(TransitionEffectCo());
+            transitionManager.CallManageActions(collider.gameObject.GetComponentInChildren<ActionsManager>());
         }
     }
 
-    private IEnumerator TransitionEffectCo(ActionsManager actionsManager) {
+    private IEnumerator TransitionEffectCo() {
         transitionVirtualCamera.SetActive(true);
-        actionsManager.UpdateAllAuthorizedActions(false);
         yield return new WaitForSeconds(1f);
         virtualCameraToActivate.SetActive(true);
         transitionVirtualCamera.SetActive(false);
-        actionsManager.UpdateAllAuthorizedActions(true);
         virtualCameraToDesactivate.SetActive(false);
     }
 }
