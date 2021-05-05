@@ -25,14 +25,29 @@ public class CatchAction : MonoBehaviour
     };
     private Direction catchingDirection;
 
+    private Stamina stamina;
+
+#region Unity Functions
     public void Start() {
         rb2d = go.GetComponent<Rigidbody2D>();
+        stamina = GetComponent<Stamina>();
         wallDistance = GetComponent<WallDistance>();
 
         isCatching = false;
         catchingDirection = Direction.None;
     }
-
+    public void Update() {
+        if(isCatching && !stamina.StaminaIsEmpty()) {
+            stamina.UpdateConsumingStamina(true);
+            stamina.ConsumeStamina(1);
+        } else if (!isCatching) {
+            stamina.UpdateConsumingStamina(false);
+        } else if (stamina.StaminaIsEmpty()) {
+            stamina.UpdateConsumingStamina(false);
+            CancelCatch();
+        }
+    }
+#endregion
 #region Public Functions
     public void Call()
     {
