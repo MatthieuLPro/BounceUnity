@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GroundDistance : MonoBehaviour
 {
+    [Header("Dust effect")]
+    [SerializeField]
+    private DustEffect dust;
     public LayerMask groundLayers;
     public PolygonCollider2D collider;
     private JumpAction jumpAction;
@@ -29,7 +32,10 @@ public class GroundDistance : MonoBehaviour
         if (isEnable) {
             UpdateCheckDistance();
             if (CheckGrounded()) {
-                state.CurrentState = VerticalState.States.Standing;
+                if (state.CurrentState != VerticalState.States.Standing) {
+                    state.CurrentState = VerticalState.States.Standing;
+                    dust.Call();
+                }
                 if (jumpBuffer.IsBuffered()) {
                     jumpAction.CallBuffer();
                     jumpBuffer.ResetBuffer();

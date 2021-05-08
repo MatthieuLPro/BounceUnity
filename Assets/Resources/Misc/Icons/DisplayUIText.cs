@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DisplayUIText : MonoBehaviour
-{
-    [Header("Text to display")]
+{   
+    [Header("Text name to display")]
     [SerializeField]
-    private GameObject textToDisplay;
-    // Start is called before the first frame update
-    void Start()
-    {
-        textToDisplay.SetActive(false);
-    }
+    private string textName;
 
+    [Header("SignText displayer")]
+    [SerializeField]
+    private SignTextDisplay displayer;
+
+#region Unity Functions
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.tag == "Player") {
-            textToDisplay.SetActive(true);
+            displayer.Call(textName, true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collider) {
         if (collider.tag == "Player") {
-            textToDisplay.SetActive(false);
+            displayer.Call(textName, false);
         }
     }
+#endregion
 }

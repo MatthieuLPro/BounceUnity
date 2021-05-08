@@ -9,6 +9,10 @@ public class HorizontalMoveAction : MonoBehaviour
     [SerializeField]
     private GameObject go;
 
+    [Header("Dust effect")]
+    [SerializeField]
+    private DustEffect dust;
+
     private Horizontal.DirectionState directionState;
     private HorizontalState horizontalState;
     private Rigidbody2D rb2D;
@@ -61,6 +65,9 @@ public class HorizontalMoveAction : MonoBehaviour
         if (horizontalState.IsRunning()) {
             currentMaxSpeed = maxAccelerationSpeed;
             currentBaseAcceleration = baseAccelerationThrust;
+            if (rb2D.velocity.y < 0.05f && rb2D.velocity.y > -0.05f) {
+                dust.Call();
+            }
         } else {
             currentMaxSpeed = maxSpeed;
             currentBaseAcceleration = baseAcceleration;    
