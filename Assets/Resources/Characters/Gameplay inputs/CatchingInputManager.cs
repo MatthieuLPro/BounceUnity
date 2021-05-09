@@ -69,7 +69,6 @@ public class CatchingInputManager : MonoBehaviour
                     catchScript.Cancel();
                     jumpScript.CallStartCatching(direction);
                     StartCoroutine(BlockHorizontalMovement());
-                    UpdateActionMap("Gameplay");
                 }
             }
         }
@@ -85,6 +84,7 @@ public class CatchingInputManager : MonoBehaviour
         actionsManager.SetDelayToFinishAction(ActionsManager.Actions.HorizontalMove, 2.0f);
         yield return new WaitForSeconds(0.25f);
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, true);
+        UpdateActionMap("Gameplay");
     }
     private void CliffJump(CatchAction.Direction xDirection) {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
@@ -92,7 +92,6 @@ public class CatchingInputManager : MonoBehaviour
             catchScript.Cancel();
             jumpScript.CallStartCatchingCliff(yVector);
             StartCoroutine(BlockHorizontalMovement());
-            UpdateActionMap("Gameplay");
         }
     }
     private void Move() {

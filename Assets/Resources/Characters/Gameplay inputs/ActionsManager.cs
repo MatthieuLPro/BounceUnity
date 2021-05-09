@@ -57,8 +57,10 @@ public class ActionsManager : MonoBehaviour
     // 2. Then we start the waiting (Coroutine)
     // 3. The coroutine sets the action "Finished"
     public void SetDelayToFinishAction(Actions action, float seconds) {
-        actionToFinish.Add(action, false);
-        StartCoroutine(StartWaitingBeforeRemove(seconds, action));
+        if (!actionToFinish.ContainsKey(action)) {
+            actionToFinish.Add(action, false);
+            StartCoroutine(StartWaitingBeforeRemove(seconds, action));
+        }
     }
 
     public void UpdateAuthorizedAction(Actions action, bool newState) {

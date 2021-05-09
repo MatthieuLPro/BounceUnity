@@ -123,14 +123,18 @@ public class JumpAction : MonoBehaviour
 
     private void StopTripleJumpBuffer() {
         if (isBuffering) {
-            StopCoroutine(tripleJumpCoroutine);
+            if (tripleJumpCoroutine != null) {
+                StopCoroutine(tripleJumpCoroutine);
+            }
             isBuffering = false;
             thrust_index = 0;
         }
     }
 
     private void ResetForJumpBuffer() {
-        StopCoroutine(tripleJumpCoroutine);
+        if (tripleJumpCoroutine != null) {
+            StopCoroutine(tripleJumpCoroutine);
+        }
         tripleJumpCoroutine = StartCoroutine(ResetTripleJumpBuffer());
     }
 
