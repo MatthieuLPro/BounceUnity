@@ -8,6 +8,10 @@ public class TransitionManager : MonoBehaviour
     public void CallManageActions(ActionsManager actionsManager) {
         StartCoroutine(ManageActions(actionsManager));
     }
+
+    public void UpdateManageActions(ActionsManager actionsManager, bool authorization) {
+        actionsManager.UpdateAllAuthorizedActions(authorization);
+    }
 #endregion
 #region Private functions
     private IEnumerator ManageActions(ActionsManager actionsManager) {

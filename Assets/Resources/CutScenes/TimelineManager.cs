@@ -5,22 +5,54 @@ using UnityEngine.Playables;
 
 public class TimelineManager : MonoBehaviour
 {
-    private bool fix = false;
-    public Animator playerAnimator;
-    public RuntimeAnimatorController playerAnim;
-    public PlayableDirector director;
+    [Header("Current playable director")]
+    [SerializeField]
+    private PlayableDirector currentDirector;
 
-    void OnEnable()
-    {
-        playerAnim = playerAnimator.runtimeAnimatorController;
-        playerAnimator.runtimeAnimatorController = null;         
+    [Header("Play on awake ?")]
+    [SerializeField]
+    private bool playOnAwake = false;
+
+    [Header("Transition Manager")]
+    [SerializeField]
+    private TransitionManager transitionManager;
+
+    [Header("Actions Manager")]
+    [SerializeField]
+    private ActionsManager actionsManager;
+
+    private PlayState previousState;
+
+    void Start() {
+        transitionManager.UpdateManageActions(actionsManager, false);
+        currentDirector.Play();
     }
 
-    void Update()
-    {
-        if(director.state != PlayState.Playing && !fix) {
-            fix = true;
-            playerAnimator.runtimeAnimatorController = playerAnim;
+    void Update() {
+        if (currentDirector.state == PlayState.Playing && previousState != currentDirector.state) {
+            previousState = currentDirector.state;
+        } else if (currentDirector.state == PlayState.Paused && previousState != currentDirector.state) {
+            previousState = currentDirector.state;
+            transitionManager.UpdateManageActions(actionsManager, true);
         }
+    }
+
+    public void Call() {
+        transitionManager.UpdateManageActions(actionsManager, false);
+        currentDirector.Play();
+    }
+
+    public void CallWithWait() {
+        transitionManager.UpdateManageActions(actionsManager, false);
+        StartCoroutine(WaitBeforeLaunchCs());
+    }
+
+    public void UpdateCurrentDirector(PlayableDirector newDirector) {
+        currentDirector = newDirector;
+    }
+
+    public IEnumerator WaitBeforeLaunchCs() {
+        yield return new WaitForSeconds(2f);
+        currentDirector.Play();
     }
 }
