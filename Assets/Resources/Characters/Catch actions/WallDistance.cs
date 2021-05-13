@@ -13,7 +13,7 @@ public class WallDistance : MonoBehaviour
     private Transform transform;
     private PolygonCollider2D collider;
     private float distanceBetween;
-    private float WALL_DISTANCE_OFFSET = 1.85f;
+    private float WALL_DISTANCE_OFFSET = 4f;
 
 #region Functions Unity    
     void Start()
@@ -55,10 +55,10 @@ public class WallDistance : MonoBehaviour
     private bool IsInContact(Ray2D ray, float distance, LayerMask layer) {
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, distance, layer);
         if(hit) {
-            // Debug.DrawLine(ray.origin, hit.point, Color.green);
+            Debug.DrawLine(ray.origin, hit.point, Color.green);
             return true;
         } else {
-            // Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
+            Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
             return false;
         }
     }
