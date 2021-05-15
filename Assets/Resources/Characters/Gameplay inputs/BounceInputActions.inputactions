@@ -197,6 +197,14 @@
                     "interactions": "Press"
                 },
                 {
+                    "name": "Activation",
+                    "type": "Button",
+                    "id": "55dda451-bb75-4322-9865-673ed1082aee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
                     "name": "ChangeSizeSmall",
                     "type": "Button",
                     "id": "5a762492-c9d6-40fb-8410-560bd70d0b9a",
@@ -529,6 +537,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5d2a866-d717-4561-8ae6-ea6d3e2ab7cb",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Activation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

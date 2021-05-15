@@ -10,6 +10,14 @@ public class GameplayInputManager : MonoBehaviour
     [SerializeField]
     private CatchAction catchScript;
 
+    [Header("Read action")]
+    [SerializeField]
+    private Dialog dialogScript;
+
+    [Header("Activation manager")]
+    [SerializeField]
+    private ActivationManager activationManager;
+
     [Header("Jump action")]
     [SerializeField]
     private JumpAction jumpScript;
@@ -66,6 +74,20 @@ public class GameplayInputManager : MonoBehaviour
             }
         } else {
             moveScript.CallNotRunning();
+        }
+    }
+
+    public void OnActivation(InputAction.CallbackContext context) {
+        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Activate)) {
+            if (context.started) {
+                activationManager.Call();
+                UpdateActionsForActivation(false);
+                // UpdateActionsForReading(false);
+                if (activationManager.ActivationIsFinished()) {
+                    UpdateActionsForActivation(true);
+                    // UpdateActionsForReading(true);
+                }
+            }
         }
     }
 
@@ -145,6 +167,35 @@ public class GameplayInputManager : MonoBehaviour
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, true);
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, true);
     }
+
+    // private void UpdateActionsForReading(bool availability) {
+    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
+    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Dash, availability);
+    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, availability);
+    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, availability);
+    // }
+
+    private void UpdateActionsForActivation(bool availability) {
+        switch(activationManager.CurrentType) {
+            case ActivationManager.Type.Dialog:
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Dash, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, availability);
+                break;
+            case ActivationManager.Type.OpenDoor:
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Dash, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Activate, availability);
+                break;
+            default:
+                break;
+        }
+    }
+
+
     private void UpdateActionMap(string newMap) {
         playerInput.SwitchCurrentActionMap(newMap);
     }

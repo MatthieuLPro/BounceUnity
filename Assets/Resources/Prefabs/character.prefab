@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catchScript: {fileID: 8104183678540985479}
+  dialogScript: {fileID: 0}
   jumpScript: {fileID: 4103918216960457158}
   moveScript: {fileID: 9134920572593286310}
   menuScript: {fileID: 1937189169668423056}
@@ -5391,6 +5392,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 34dbe13f-bbb4-4f4b-8906-241dbc1b3efc
     m_ActionName: Catching/Acceleration[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6969102619229774357}
+        m_MethodName: OnActivation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 55dda451-bb75-4322-9865-673ed1082aee
+    m_ActionName: Gameplay/Activation[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

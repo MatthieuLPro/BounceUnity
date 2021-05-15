@@ -4,31 +4,30 @@ using UnityEngine;
 
 public class DoorSwitch : MonoBehaviour
 {
-    [Header("New switch sprite")]
+    [Header("Activation manager")]
     [SerializeField]
-    private Sprite activatedSprite;
-    public Door[] doors;
+    private ActivationManager activationManager;
 
-    private bool isActivated;
-    private SpriteRenderer spriteRenderer;
+    private CsDoorOpen openDoor;
 
-    private Animator iconAnimator;
+    void Start() {
+        openDoor = GetComponent<CsDoorOpen>();
+    }
 
 #region Functions Unity
-    private void Start() {
-        isActivated = false;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        iconAnimator = gameObject.GetComponentInChildren<Animator>();
-    } 
-
     private void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.tag == "Player" && !isActivated) {
-            foreach (Door door in doors) {
-                door.Openable();
-            }
-            spriteRenderer.sprite = activatedSprite;
-            isActivated = true;
-            iconAnimator.SetBool("isClose", true);
+        if (collider.tag == "Player") {
+            collider.gameObject.GetComponentInChildren<ActionsManager>().UpdateAuthorizedAction(ActionsManager.Actions.Activate, true);
+            activationManager.CurrentType = ActivationManager.Type.OpenDoor;
+            activationManager.UpdateOpenDoor(openDoor);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider) {
+        if (collider.tag == "Player") {
+            collider.gameObject.GetComponentInChildren<ActionsManager>().UpdateAuthorizedAction(ActionsManager.Actions.Activate, false);
+            activationManager.CurrentType = ActivationManager.Type.None;
+            activationManager.UpdateOpenDoor(null);
         }
     }
 #endregion
