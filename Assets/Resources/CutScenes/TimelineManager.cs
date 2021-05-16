@@ -24,8 +24,10 @@ public class TimelineManager : MonoBehaviour
     private PlayState previousState;
 
     void Start() {
-        transitionManager.UpdateManageActions(actionsManager, false);
-        currentDirector.Play();
+        if (playOnAwake) {
+            transitionManager.UpdateManageActions(actionsManager, false);
+            currentDirector.Play();
+        }
     }
 
     void Update() {
@@ -42,6 +44,11 @@ public class TimelineManager : MonoBehaviour
         currentDirector.Play();
     }
 
+    public void CallWithBlock(float waitTime) {
+        StartCoroutine(BlockAction(waitTime));
+        currentDirector.Play();
+    }
+
     public void CallWithWait() {
         transitionManager.UpdateManageActions(actionsManager, false);
         StartCoroutine(WaitBeforeLaunchCs());
@@ -54,5 +61,11 @@ public class TimelineManager : MonoBehaviour
     public IEnumerator WaitBeforeLaunchCs() {
         yield return new WaitForSeconds(2f);
         currentDirector.Play();
+    }
+
+    public IEnumerator BlockAction(float time) {
+        transitionManager.UpdateManageActions(actionsManager, false);
+        yield return new WaitForSeconds(time);
+        transitionManager.UpdateManageActions(actionsManager, true);
     }
 }

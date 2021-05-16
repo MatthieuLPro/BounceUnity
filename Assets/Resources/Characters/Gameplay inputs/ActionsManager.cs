@@ -25,7 +25,6 @@ public class ActionsManager : MonoBehaviour
         HorizontalMove,
         Jump,
         Menu,
-        // ReadText,
         SmallSize
     }
 
@@ -34,7 +33,7 @@ public class ActionsManager : MonoBehaviour
     private Dictionary<Actions, bool> actionToFinish;
     
 #region Unity Functions
-    void Start()
+    void Awake()
     {
         InitActionsDictionary();
         InitAuthorizedActions();
@@ -106,7 +105,6 @@ public class ActionsManager : MonoBehaviour
         actionsStatement.Add(Actions.HorizontalMove, false);
         actionsStatement.Add(Actions.Jump, false);
         actionsStatement.Add(Actions.Menu, false);
-        // actionsStatement.Add(Actions.ReadText, false);
         actionsStatement.Add(Actions.SmallSize, false);
     }
 

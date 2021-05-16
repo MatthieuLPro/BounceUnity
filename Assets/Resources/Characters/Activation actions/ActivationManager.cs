@@ -43,7 +43,7 @@ public class ActivationManager : MonoBehaviour
             case Type.Dialog:
                 return dialog.IsFinished();
             default:
-                return true;
+                return false;
         }
     }
 

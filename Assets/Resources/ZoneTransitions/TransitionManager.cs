@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Should be rename into action blocker manager ?
+// Shoule be move into manage actions class ?
 public class TransitionManager : MonoBehaviour
 {
 #region Public functions

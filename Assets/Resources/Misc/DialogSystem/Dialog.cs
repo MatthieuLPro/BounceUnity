@@ -55,8 +55,7 @@ public class Dialog : MonoBehaviour
     }
 
     private void ResetSentence() {
-        // Set animator
-        // textDisplayAnimator.SetTrigger("Change");
+        textDisplayAnimator.SetTrigger("Change");
         continueText.SetActive(false);
         textDisplay.text = "";
     }

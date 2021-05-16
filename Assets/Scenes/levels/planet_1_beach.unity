@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 2324259}
   - component: {fileID: 2324258}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1470,7 +1470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &234295324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDirector: {fileID: 293999499}
-  playOnAwake: 1
+  playOnAwake: 0
   transitionManager: {fileID: 396856219}
   actionsManager: {fileID: 1913696318}
 --- !u!4 &234295325
@@ -1501,6 +1501,7 @@ Transform:
   - {fileID: 293999500}
   - {fileID: 425989447}
   - {fileID: 2018996843}
+  - {fileID: 1636032174}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44727,14 +44728,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52c345ec79ff4dae8e28baec13de35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutSceneCamera: csOpenDoor
-  originalCamera: igGrottoChallengeRoom
-  animator: {fileID: 1029507542}
-  transitionManager: {fileID: 396856219}
-  door: {fileID: 1392301048}
   activatedSprite: {fileID: 21300000, guid: 2a1475da1732271a5917c259def2ff4f, type: 3}
-  doors:
-  - {fileID: 1392301052}
+  newDirector: {fileID: 1636032176}
+  timelineManager: {fileID: 234295324}
 --- !u!1 &416769436
 GameObject:
   m_ObjectHideFlags: 0
@@ -45733,7 +45729,7 @@ MonoBehaviour:
   - 'then press "up" or "down" to move '
   typingSpeed: 0.05
   continueText: {fileID: 1889166553}
-  textDisplayAnimator: {fileID: 0}
+  textDisplayAnimator: {fileID: 846452049}
 --- !u!1 &586806210
 GameObject:
   m_ObjectHideFlags: 0
@@ -46266,7 +46262,7 @@ MonoBehaviour:
   - press "space" to jump
   typingSpeed: 0.05
   continueText: {fileID: 1889166553}
-  textDisplayAnimator: {fileID: 0}
+  textDisplayAnimator: {fileID: 846452049}
 --- !u!1 &681107586
 GameObject:
   m_ObjectHideFlags: 0
@@ -47130,6 +47126,7 @@ GameObject:
   - component: {fileID: 846452046}
   - component: {fileID: 846452048}
   - component: {fileID: 846452047}
+  - component: {fileID: 846452049}
   m_Layer: 5
   m_Name: DialogText
   m_TagString: Untagged
@@ -47275,6 +47272,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846452045}
   m_CullTransparentMesh: 0
+--- !u!95 &846452049
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846452045}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa2b3810128ee585d9c3acc2d958dade, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &904105802
 GameObject:
   m_ObjectHideFlags: 0
@@ -49800,7 +49816,7 @@ MonoBehaviour:
   - press "space" when you are climbing to jump
   typingSpeed: 0.05
   continueText: {fileID: 1889166553}
-  textDisplayAnimator: {fileID: 0}
+  textDisplayAnimator: {fileID: 846452049}
 --- !u!1 &1356898970
 GameObject:
   m_ObjectHideFlags: 3
@@ -50014,7 +50030,7 @@ GameObject:
   - component: {fileID: 1392301050}
   - component: {fileID: 1392301049}
   - component: {fileID: 1392301051}
-  - component: {fileID: 1392301052}
+  - component: {fileID: 1392301053}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -50112,18 +50128,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32, y: 32}
   m_EdgeRadius: 0
---- !u!114 &1392301052
-MonoBehaviour:
+--- !u!95 &1392301053
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392301048}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d450e04e5d344f30ea7bde21b7f7c01f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d27576fc6861259c918a5ad3a144743, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1411504572
 GameObject:
   m_ObjectHideFlags: 0
@@ -59268,6 +59291,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1636032173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1636032174}
+  - component: {fileID: 1636032176}
+  m_Layer: 0
+  m_Name: CS - Open door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1636032174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636032173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 234295325}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &1636032176
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636032173}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 2870bd1b8524426839df917c56b7cc84, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -6054573791984871201, guid: 2870bd1b8524426839df917c56b7cc84, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4611963708573385426, guid: 2870bd1b8524426839df917c56b7cc84, type: 2}
+    value: {fileID: 2005043724}
+  - key: {fileID: 5228252420626010701, guid: 2870bd1b8524426839df917c56b7cc84, type: 2}
+    value: {fileID: 1392301053}
+  m_ExposedReferences:
+    m_References:
+    - f543f458fc40c1d80a0b19c163ddfb87: {fileID: 1070485483}
+    - 7a7833f02533c63a08a98dda14b8ba77: {fileID: 1070485483}
+    - 0cb5f71319416a407a8c9c459b61d5cf: {fileID: 1070485483}
+    - 525ca95fc2d843fe6a5bbb00dd4b4f5c: {fileID: 146557325}
+    - 2b3fea48495a9f9ebba1a787f2e2aaef: {fileID: 1070485483}
+    - f1f1d3f9f73338fa29c002b807d438ac: {fileID: 808812104}
+    - b216a6d0710bb992d9eda9187d34eee2: {fileID: 1070485483}
+    - 9519ea9d85226ab29ad0f079723b3185: {fileID: 146557325}
 --- !u!1 &1636918937
 GameObject:
   m_ObjectHideFlags: 0
@@ -59409,7 +59494,7 @@ MonoBehaviour:
   - press "space" when you touch the ground to jump higher
   typingSpeed: 0.05
   continueText: {fileID: 1889166553}
-  textDisplayAnimator: {fileID: 0}
+  textDisplayAnimator: {fileID: 846452049}
 --- !u!1 &1653853955
 GameObject:
   m_ObjectHideFlags: 3
@@ -61118,7 +61203,7 @@ MonoBehaviour:
   - press "shift" during a jump to advance further
   typingSpeed: 0.05
   continueText: {fileID: 1889166553}
-  textDisplayAnimator: {fileID: 0}
+  textDisplayAnimator: {fileID: 846452049}
 --- !u!1 &1980967467
 GameObject:
   m_ObjectHideFlags: 0

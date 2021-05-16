@@ -82,10 +82,8 @@ public class GameplayInputManager : MonoBehaviour
             if (context.started) {
                 activationManager.Call();
                 UpdateActionsForActivation(false);
-                // UpdateActionsForReading(false);
                 if (activationManager.ActivationIsFinished()) {
                     UpdateActionsForActivation(true);
-                    // UpdateActionsForReading(true);
                 }
             }
         }
@@ -167,13 +165,6 @@ public class GameplayInputManager : MonoBehaviour
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, true);
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, true);
     }
-
-    // private void UpdateActionsForReading(bool availability) {
-    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
-    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Dash, availability);
-    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, availability);
-    //     actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, availability);
-    // }
 
     private void UpdateActionsForActivation(bool availability) {
         switch(activationManager.CurrentType) {
