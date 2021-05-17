@@ -89,6 +89,12 @@ public class GameplayInputManager : MonoBehaviour
         }
     }
 
+    // Should be in specific input manager
+    public void LaunchActivation() {
+        activationManager.Call();
+        UpdateActionsForActivation(false);
+    }
+
     public void OnCatch(InputAction.CallbackContext context) {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Catch)) {
             if (context.interaction is PressInteraction) {

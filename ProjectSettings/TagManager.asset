@@ -12,6 +12,7 @@ TagManager:
   - SideRightBottom
   - Form
   - Loader
+  - Sign
   layers:
   - Default
   - TransparentFX
