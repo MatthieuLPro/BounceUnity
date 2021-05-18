@@ -49,6 +49,10 @@ public class ActionsManager : MonoBehaviour
         return actionsStatement[action];
     }
 
+    public bool ActionIsAuthorized(Actions action) {
+        return authorizedActions.Contains(action);
+    }
+
     // Verify if the action is finish
     public bool ActionIsFinish(Actions action) {
         if (actionToFinish.ContainsKey(action)) {
@@ -111,7 +115,6 @@ public class ActionsManager : MonoBehaviour
     private void InitAuthorizedActions() {
         authorizedActions = new List<Actions>();
         authorizedActions.Add(Actions.Acceleration);
-        authorizedActions.Add(Actions.Catch);
         authorizedActions.Add(Actions.HorizontalMove);
         authorizedActions.Add(Actions.Jump);
         authorizedActions.Add(Actions.Menu);

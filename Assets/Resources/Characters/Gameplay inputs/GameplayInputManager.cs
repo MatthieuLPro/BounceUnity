@@ -175,17 +175,21 @@ public class GameplayInputManager : MonoBehaviour
     private void UpdateActionsForActivation(bool availability) {
         switch(activationManager.CurrentType) {
             case ActivationManager.Type.Dialog:
-                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
-                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Dash, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Acceleration, availability);
                 actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, availability);
                 actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, availability);
+                if (actionsManager.ActionIsAuthorized(ActionsManager.Actions.Catch)) {
+                    actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
+                }
                 break;
             case ActivationManager.Type.OpenDoor:
-                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
-                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Dash, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Acceleration, availability);
+                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Activate, availability);
+                if (actionsManager.ActionIsAuthorized(ActionsManager.Actions.Catch)) {
+                    actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Catch, availability);
+                }
                 actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, availability);
                 actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Jump, availability);
-                actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.Activate, availability);
                 break;
             default:
                 break;
