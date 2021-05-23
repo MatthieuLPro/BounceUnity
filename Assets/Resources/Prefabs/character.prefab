@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catchScript: {fileID: 8104183678540985479}
   dialogScript: {fileID: 0}
+  activationManager: {fileID: 0}
   jumpScript: {fileID: 4103918216960457158}
   moveScript: {fileID: 9134920572593286310}
   menuScript: {fileID: 1937189169668423056}
@@ -4958,6 +4959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go: {fileID: 4103918215236985877}
   horizontalDirectionState: {fileID: 8415344020814934720}
+  datas: {fileID: 11400000, guid: d2ca4d3621ebd356f853c748cb21f1af, type: 2}
 --- !u!114 &6361065209513974900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4970,7 +4972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0870f7ce3c2d798a70a4c4548f0157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxStamina: 20
+  datas: {fileID: 11400000, guid: d2ca4d3621ebd356f853c748cb21f1af, type: 2}
 --- !u!114 &3062776748582250774
 MonoBehaviour:
   m_ObjectHideFlags: 0

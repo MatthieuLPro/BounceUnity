@@ -4,40 +4,34 @@ using UnityEngine;
 
 public class Stamina : MonoBehaviour
 {
-    [Header("Max stamina")]
-    [SerializeField]
-    private int maxStamina;
-
     private float CooldownSpeed;
     private bool consumingIsLoading;
-    private int currentStamina;
     private bool isConsuming;
     private bool isLoading;
+
+    [SerializeField]
+    private StaminaData datas;
 
 #region Unity Functions
     void Start() {
         CooldownSpeed = .8f;
         consumingIsLoading = false;
-        currentStamina = maxStamina;
         isLoading = false;
     }
 
     void Update() {
-        if (!isConsuming && !isLoading && currentStamina < maxStamina) {
+        if (!isConsuming && !isLoading && datas.CurrentStaminaIsOverMax()) {
             StartCoroutine(CooldownStamina());
         }
     }
 #endregion
 #region Public Functions
     public void ConsumeStamina(int value) {
-        if (!consumingIsLoading && currentStamina > 0) {
+        if (!consumingIsLoading && datas.StaminaIsNotEmpty()) {
             StartCoroutine(ConsumingStamina(value));
         }
     }
 
-    public bool StaminaIsEmpty() {
-        return currentStamina == 0;
-    }
     public void UpdateConsumingStamina(bool value) {
         isConsuming = value;
     }
@@ -46,13 +40,13 @@ public class Stamina : MonoBehaviour
     private IEnumerator ConsumingStamina(int value) {
         consumingIsLoading = true;
         yield return new WaitForSeconds(.5f);
-        currentStamina -= value;
+        datas.UpdateCurrentStamina(value * -1);
         consumingIsLoading = false;
     }
     private IEnumerator CooldownStamina() {
         isLoading = true;
         yield return new WaitForSeconds(CooldownSpeed);
-        currentStamina += 1;
+        datas.UpdateCurrentStamina(1);
         isLoading = false;
     }
 #endregion

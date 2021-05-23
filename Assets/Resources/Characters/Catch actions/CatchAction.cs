@@ -14,6 +14,9 @@ public class CatchAction : MonoBehaviour
     [SerializeField]
     private Horizontal.DirectionState horizontalDirectionState;
 
+    [SerializeField]
+    private StaminaData datas;
+
     private Rigidbody2D rb2d;
     private WallDistance wallDistance;
     private bool isCatching;
@@ -37,12 +40,12 @@ public class CatchAction : MonoBehaviour
         catchingDirection = Direction.None;
     }
     public void Update() {
-        if(isCatching && !stamina.StaminaIsEmpty()) {
+        if(isCatching && datas.StaminaIsNotEmpty()) {
             stamina.UpdateConsumingStamina(true);
             stamina.ConsumeStamina(1);
         } else if (!isCatching) {
             stamina.UpdateConsumingStamina(false);
-        } else if (stamina.StaminaIsEmpty()) {
+        } else if (datas.StaminaIsEmpty()) {
             stamina.UpdateConsumingStamina(false);
             CancelCatch();
         }
