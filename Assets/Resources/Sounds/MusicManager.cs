@@ -18,12 +18,18 @@ public class MusicManager : MonoBehaviour
     } 
     
     void Start() {
-        EazySoundManager.PlayMusic(Music, 0.25f, true, false, 1, 1);
+        if (Music) {
+            EazySoundManager.PlayMusic(Music, 0.25f, true, false, 1, 1);
+        }
     }
 
    public void PlayMusic() {
        if (!IsLocked) {
            EazySoundManager.PlayMusic(Music, 0.25f, true, false, 1, 1);
        }
+   }
+
+   public void StopMusic() {
+        EazySoundManager.StopAllMusic(1f);
    }
 }

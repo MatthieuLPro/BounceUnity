@@ -19,8 +19,16 @@ public class UpdateMusic : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider) {
         if (collider.tag == "Player") {
-            musicManager.Music = music;
-            musicManager.PlayMusic();
+            StartMusic();
         }
+    }
+
+    public void StopMusic() {
+        musicManager.StopMusic();
+    }
+
+    public void StartMusic() {
+        musicManager.Music = music;
+        musicManager.PlayMusic();
     }
 }

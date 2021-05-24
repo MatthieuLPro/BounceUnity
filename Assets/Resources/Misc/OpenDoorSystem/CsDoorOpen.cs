@@ -19,6 +19,14 @@ public class CsDoorOpen : MonoBehaviour
     [SerializeField]
     private PlayableDirector newDirector;
 
+    [Header("Sound manager")]
+    [SerializeField]
+    private SoundManager soundManager;
+
+    [Header("Sound")]
+    [SerializeField]
+    private AudioClip switchSound;
+
     public TimelineManager timelineManager;
 
     private void Start() {
@@ -32,6 +40,8 @@ public class CsDoorOpen : MonoBehaviour
             spriteRenderer.sprite = activatedSprite;
             iconAnimator.SetBool("isClose", true);
             isActivated = true;
+            soundManager.Sound = switchSound;
+            soundManager.PlaySound();
             LaunchDirector();
         }
     }

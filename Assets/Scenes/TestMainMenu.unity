@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 689549107}
   - component: {fileID: 689549110}
   m_Layer: 5
-  m_Name: GamePlayTest
+  m_Name: Tutorial test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 689549108}
-  sceneName: LVL - The Maze
+  sceneName: planet_1_beach
   sceneLoading: {fileID: 1839171949}
 --- !u!1 &1191270904
 GameObject:
@@ -926,7 +926,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GamePlayTest Level
+  m_Text: Tutorial level
 --- !u!222 &1191270907
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1100,10 +1100,6 @@ MonoBehaviour:
     m_ActionName: Gameplay/Acceleration[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 6173091f-7994-47ab-8c06-6e53cd60a09c
-    m_ActionName: Gameplay/ChangeForm[/Keyboard/ctrl]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c387225f-f732-40e3-b04d-686ee135c9d5
     m_ActionName: Gameplay/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -1198,8 +1194,28 @@ MonoBehaviour:
     m_ActionName: Gameplay/Catch[/Keyboard/alt]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 40bd7787-3e1c-4392-bdca-3ada036e7c7a
-    m_ActionName: Gameplay/ChangeSizeBig
+    m_ActionId: 34dbe13f-bbb4-4f4b-8906-241dbc1b3efc
+    m_ActionName: Catching/Acceleration[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1e852fa-e937-4e3a-8317-76bc636fc903
+    m_ActionName: Catching/Catch[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 387482f1-ff60-4984-a53a-ae9007aca358
+    m_ActionName: Catching/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f9f28c9-c79e-4daa-8ed1-11db9e83ec9b
+    m_ActionName: Catching/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/w,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55dda451-bb75-4322-9865-673ed1082aee
+    m_ActionName: Gameplay/Activation[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92cdc348-be2b-4297-9661-90e783dece28
+    m_ActionName: Gameplay/Dash[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Menus

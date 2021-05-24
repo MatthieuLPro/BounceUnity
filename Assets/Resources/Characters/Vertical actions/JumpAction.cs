@@ -8,9 +8,15 @@ public class JumpAction : MonoBehaviour
     [Header("Rigidbody")]
     [SerializeField]
     private Rigidbody2D rb2D;
-    [Header("Action sound")]
+    [Header("Action sound level 1")]
     [SerializeField]
-    private AudioClip sound;
+    private AudioClip soundLevel1;
+    [Header("Action sound level 2")]
+    [SerializeField]
+    private AudioClip soundLevel2;
+    [Header("Action sound level 3")]
+    [SerializeField]
+    private AudioClip soundLevel3;
 
     private VerticalState stateMachine;
     private GroundDistance groundDistance;
@@ -25,6 +31,7 @@ public class JumpAction : MonoBehaviour
     private Coroutine tripleJumpCoroutine;
     private float WALL_JUMP_THRUST;
     private float CLIFF_JUMP_THRUST;
+    private AudioClip[] SOUNDS;
 
 #region Unity Functions
     void Awake() {
@@ -35,6 +42,7 @@ public class JumpAction : MonoBehaviour
         SOUND_VOLUME = 0.2f;
         VELOCITY_CANCEL_COEFFICIENT = 0.5f;
         VERTICAL_THRUSTS = new float[3] { 4500.0f, 6500.0f, 8500.0f };
+        SOUNDS = new AudioClip[3] { soundLevel1, soundLevel2, soundLevel3 };
         thrust_index = 0;
         isBuffering = false;
         WALL_JUMP_THRUST = 6500.0f;
@@ -99,7 +107,7 @@ public class JumpAction : MonoBehaviour
     // JUMP = Start the jump action
     private void IncreaseJumpVelocity(Vector2 direction, float thrust) {
         stateMachine.CurrentState = VerticalState.States.Jumping;
-        EazySoundManager.PlaySound(sound, SOUND_VOLUME);
+        EazySoundManager.PlaySound(SOUNDS[thrust_index], SOUND_VOLUME);
         rb2D.AddForce(direction * thrust);
     }
 

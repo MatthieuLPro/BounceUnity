@@ -5576,7 +5576,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 4103918215236985873}
-  sound: {fileID: 8300000, guid: d4608ac927005abdeb1ee14707e3a209, type: 3}
+  soundLevel1: {fileID: 8300000, guid: d4608ac927005abdeb1ee14707e3a209, type: 3}
+  soundLevel2: {fileID: 8300000, guid: 6a1e8f97b0b69b0d6b908a213a2fa59f, type: 3}
+  soundLevel3: {fileID: 8300000, guid: ff9c11745231bec57b64e5e05726fb02, type: 3}
 --- !u!114 &8324385167803110054
 MonoBehaviour:
   m_ObjectHideFlags: 0
