@@ -52,27 +52,11 @@ public class CatchAction : MonoBehaviour
     }
 #endregion
 #region Public Functions
-    public void Call()
-    {
-        StartCatch();
-    }
 
-    public void Cancel()
-    {
-        CancelCatch();
-    }
-
-    public bool IsCatching() {
-        return isCatching;
-    }
-    public Direction CurrentDirection() {
-        return catchingDirection;
-    }
-#endregion
-#region Private Functions
     // Should call specific function depending of the 
     // Movement direction
-    private void StartCatch() {
+    public void Call()
+    {
         if (horizontalDirectionState.CurrentDirection == Horizontal.DirectionState.Directions.Left && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.left })) {
             rb2d.velocity = Vector2.zero;
             rb2d.bodyType = RigidbodyType2D.Kinematic;
@@ -90,6 +74,19 @@ public class CatchAction : MonoBehaviour
         }
     }
 
+    public void Cancel()
+    {
+        CancelCatch();
+    }
+
+    public bool IsCatching() {
+        return isCatching;
+    }
+    public Direction CurrentDirection() {
+        return catchingDirection;
+    }
+#endregion
+#region Private Functions
     private void CancelCatch() {
         rb2d.bodyType = RigidbodyType2D.Dynamic;
         isCatching = false;

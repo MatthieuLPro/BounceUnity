@@ -77,7 +77,34 @@ MonoBehaviour:
   catchScript: {fileID: 8104183678540985479}
   dialogScript: {fileID: 0}
   activationManager: {fileID: 0}
-  jumpScript: {fileID: 4103918216960457158}
+  jumpStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4103918216960457158}
+        m_MethodName: CallStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  jumpCancel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3569179625134642271}
+        m_MethodName: Call
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   moveScript: {fileID: 9134920572593286310}
   menuScript: {fileID: 1937189169668423056}
   dashScript: {fileID: 7105684221455068206}
@@ -4924,6 +4951,7 @@ GameObject:
   - component: {fileID: 8104183678540985479}
   - component: {fileID: 6361065209513974900}
   - component: {fileID: 3062776748582250774}
+  - component: {fileID: 576102074612623888}
   m_Layer: 0
   m_Name: Catch
   m_TagString: Untagged
@@ -4989,6 +5017,20 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 1048576
+--- !u!114 &576102074612623888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474514291226923033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012b1b5c6f08ecaf59df7470aeb3be4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go_image: {fileID: 0}
+  staminaData: {fileID: 11400000, guid: d2ca4d3621ebd356f853c748cb21f1af, type: 2}
 --- !u!1 &4103918215236985877
 GameObject:
   m_ObjectHideFlags: 0
@@ -5499,6 +5541,7 @@ GameObject:
   - component: {fileID: 8324385167803110054}
   - component: {fileID: 2602235143676969020}
   - component: {fileID: 4103918216960457156}
+  - component: {fileID: 3569179625134642271}
   m_Layer: 0
   m_Name: Vertical
   m_TagString: Bottom
@@ -5623,6 +5666,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2D: {fileID: 4103918215236985873}
   catchAction: {fileID: 8104183678540985479}
+--- !u!114 &3569179625134642271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4103918216960457160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816712959b682c9b7a8a4fb60af9c5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 4103918215236985873}
+  velocity_cancel_coefficient: 0.5
 --- !u!1 &5492009678619022091
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class Stamina : MonoBehaviour
 {
-    private float CooldownSpeed;
-    private bool consumingIsLoading;
+    private float recoverSpeed;
+    private bool consumingIsLaunched;
+
     private bool isConsuming;
-    private bool isLoading;
+    private bool recoveringIsLaunched;
+    private float consumingSpeed;
 
     [SerializeField]
     private StaminaData datas;
 
 #region Unity Functions
     void Start() {
-        CooldownSpeed = .8f;
-        consumingIsLoading = false;
-        isLoading = false;
+        recoverSpeed = .8f;
+        consumingSpeed = .5f;
+        consumingIsLaunched = false;
+        recoveringIsLaunched = false;
+        isConsuming = false;
     }
 
     void Update() {
-        if (!isConsuming && !isLoading && datas.CurrentStaminaIsOverMax()) {
-            StartCoroutine(CooldownStamina());
+        if (!isConsuming && !recoveringIsLaunched && datas.CurrentStaminaIsOverMax()) {
+            StartCoroutine(RecoverStamina());
         }
     }
 #endregion
 #region Public Functions
     public void ConsumeStamina(int value) {
-        if (!consumingIsLoading && datas.StaminaIsNotEmpty()) {
+        if (!consumingIsLaunched && datas.StaminaIsNotEmpty()) {
             StartCoroutine(ConsumingStamina(value));
         }
     }
@@ -38,16 +42,16 @@ public class Stamina : MonoBehaviour
 #endregion
 #region Private Functions
     private IEnumerator ConsumingStamina(int value) {
-        consumingIsLoading = true;
-        yield return new WaitForSeconds(.5f);
+        consumingIsLaunched = true;
+        yield return new WaitForSeconds(consumingSpeed);
         datas.UpdateCurrentStamina(value * -1);
-        consumingIsLoading = false;
+        consumingIsLaunched = false;
     }
-    private IEnumerator CooldownStamina() {
-        isLoading = true;
-        yield return new WaitForSeconds(CooldownSpeed);
+    private IEnumerator RecoverStamina() {
+        recoveringIsLaunched = true;
+        yield return new WaitForSeconds(recoverSpeed);
         datas.UpdateCurrentStamina(1);
-        isLoading = false;
+        recoveringIsLaunched = false;
     }
 #endregion
 }

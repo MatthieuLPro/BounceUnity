@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.Events;
 
 public class GameplayInputManager : MonoBehaviour
 {
@@ -18,9 +19,12 @@ public class GameplayInputManager : MonoBehaviour
     [SerializeField]
     private ActivationManager activationManager;
 
-    [Header("Jump action")]
+    [Header("Jump start event")]
     [SerializeField]
-    private JumpAction jumpScript;
+    private UnityEvent jumpStart;
+    [Header("Jump cancel event")]
+    [SerializeField]
+    private UnityEvent jumpCancel;
 
     [Header("Move action")]
     [SerializeField]
@@ -53,6 +57,8 @@ public class GameplayInputManager : MonoBehaviour
 
     private ActionsManager actionsManager;
  
+    
+
 #region Functions Unity
     void Start() {
         actionsManager = GetComponent<ActionsManager>();
@@ -122,9 +128,9 @@ public class GameplayInputManager : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context) {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Jump)) {
             if (context.started) {
-                jumpScript.CallStart();
+                jumpStart.Invoke();
             } else if (context.canceled) {
-                jumpScript.CallCancel();
+                jumpCancel.Invoke();
             }
         }
     }

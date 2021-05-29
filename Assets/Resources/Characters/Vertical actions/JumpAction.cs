@@ -22,7 +22,6 @@ public class JumpAction : MonoBehaviour
     private GroundDistance groundDistance;
     private JumpBuffer jumpBuffer; 
     private float SOUND_VOLUME;
-    private float VELOCITY_CANCEL_COEFFICIENT;
 
     private float[] VERTICAL_THRUSTS;
     private int thrust_index;
@@ -40,7 +39,6 @@ public class JumpAction : MonoBehaviour
         jumpBuffer = GetComponent<JumpBuffer>();
 
         SOUND_VOLUME = 0.2f;
-        VELOCITY_CANCEL_COEFFICIENT = 0.5f;
         VERTICAL_THRUSTS = new float[3] { 4500.0f, 6500.0f, 8500.0f };
         SOUNDS = new AudioClip[3] { soundLevel1, soundLevel2, soundLevel3 };
         thrust_index = 0;
@@ -92,17 +90,8 @@ public class JumpAction : MonoBehaviour
         StartTripleJumpBuffer();
     }
 
-    // Call this function to launch the early fall behaviour
-    public void CallCancel() {
-        if (rb2D.velocity.y > 0) DecreaseJumpVelocity();
-    }
 #endregion
 #region Private Functions
-    // EARLY FALL = Cancel the jump action
-    // It decreases the jump height apex to be more accurate on jump
-    private void DecreaseJumpVelocity() {
-        rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * VELOCITY_CANCEL_COEFFICIENT);
-    }
     
     // JUMP = Start the jump action
     private void IncreaseJumpVelocity(Vector2 direction, float thrust) {

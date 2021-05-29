@@ -24,6 +24,10 @@ public class StaminaData : ScriptableObject
         return currentStamina == 0;
     }
 
+    public bool StaminaIsMax() {
+        return currentStamina == maxStamina;
+    }
+
     public void UpdateCurrentStamina(int variation) {
         currentStamina += variation;
     }
