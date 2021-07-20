@@ -8,12 +8,17 @@ public class StaminaData : ScriptableObject
     public int currentStamina;
     public int maxStamina;
 
+    public float recoverSpeed;
+    public float consumingSpeed;
+    
+    private bool isConsuming = false;
+
     void Awake() {
         currentStamina = maxStamina;
     }
 
-    public bool CurrentStaminaIsOverMax() {
-        return currentStamina < maxStamina;
+    public bool CurrentStaminaIsFull() {
+        return currentStamina >= maxStamina;
     }
 
     public bool StaminaIsNotEmpty() {
@@ -30,5 +35,21 @@ public class StaminaData : ScriptableObject
 
     public void UpdateCurrentStamina(int variation) {
         currentStamina += variation;
+    }
+
+    // recoverSpeed
+    public float RecoverSpeed() {
+        return recoverSpeed;
+    }    
+    // consumingSpeed
+    public float ConsumingSpeed() {
+        return consumingSpeed;
+    }
+    // isConsuming
+    public bool IsConsuming() {
+        return isConsuming;
+    }
+    public void UpdateConsumingState(bool value) {
+        isConsuming = value;
     }
 }

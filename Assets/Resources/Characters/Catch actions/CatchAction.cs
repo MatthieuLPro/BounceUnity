@@ -21,6 +21,10 @@ public class CatchAction : MonoBehaviour
     private WallDistance wallDistance;
     private bool isCatching;
 
+    [Header("Player input")]
+    [SerializeField]
+    private PlayerInput playerInput;
+
     public enum Direction {
         Right,
         Left,
@@ -28,14 +32,13 @@ public class CatchAction : MonoBehaviour
     };
     private Direction catchingDirection;
 
-    private Stamina stamina;
+    private Stamina.StaminaCore stamina;
 
 #region Unity Functions
     public void Start() {
         rb2d = go.GetComponent<Rigidbody2D>();
-        stamina = GetComponent<Stamina>();
+        stamina = GetComponent<Stamina.StaminaCore>();
         wallDistance = GetComponent<WallDistance>();
-
         isCatching = false;
         catchingDirection = Direction.None;
     }
@@ -47,7 +50,8 @@ public class CatchAction : MonoBehaviour
             stamina.UpdateConsumingStamina(false);
         } else if (datas.StaminaIsEmpty()) {
             stamina.UpdateConsumingStamina(false);
-            CancelCatch();
+            CancelClimb();
+            playerInput.SwitchCurrentActionMap("Gameplay");
         }
     }
 #endregion
@@ -58,25 +62,17 @@ public class CatchAction : MonoBehaviour
     public void Call()
     {
         if (horizontalDirectionState.CurrentDirection == Horizontal.DirectionState.Directions.Left && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.left })) {
-            rb2d.velocity = Vector2.zero;
-            rb2d.bodyType = RigidbodyType2D.Kinematic;
-            isCatching = true;
-            catchingDirection = Direction.Left;
+            StartClimb(Direction.Left);
         } else if (horizontalDirectionState.CurrentDirection == Horizontal.DirectionState.Directions.Right && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.right })){
-            rb2d.velocity = Vector2.zero;
-            rb2d.bodyType = RigidbodyType2D.Kinematic;
-            isCatching = true;
-            catchingDirection = Direction.Right;
+            StartClimb(Direction.Right);
         } else {
-            rb2d.bodyType = RigidbodyType2D.Dynamic;
-            isCatching = false;
-            catchingDirection = Direction.None;
+            CancelClimb();
         }
     }
 
     public void Cancel()
     {
-        CancelCatch();
+        CancelClimb();
     }
 
     public bool IsCatching() {
@@ -87,7 +83,13 @@ public class CatchAction : MonoBehaviour
     }
 #endregion
 #region Private Functions
-    private void CancelCatch() {
+    private void StartClimb(Direction climbDirection) {
+        rb2d.velocity = Vector2.zero;
+        rb2d.bodyType = RigidbodyType2D.Kinematic;
+        isCatching = true;
+        catchingDirection = climbDirection;
+    }
+    private void CancelClimb() {
         rb2d.bodyType = RigidbodyType2D.Dynamic;
         isCatching = false;
         catchingDirection = Direction.None;
