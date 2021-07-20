@@ -10,10 +10,6 @@ public class LevelManager : MonoBehaviour
         win
     }
 
-    [Header("Game Analyzer")]
-    [SerializeField]
-    private GameAnalyzer gameAnalyzer = null;
-
     [Header("Checkpoint")]
     [SerializeField]
     private Checkpoint checkpoint;
@@ -38,17 +34,11 @@ public class LevelManager : MonoBehaviour
     }
 
     private void WinConsequences() {
-        if (gameAnalyzer != null) {
-            gameAnalyzer.ShowAnalysis();
-        }
         SceneManager.LoadScene("TestMainMenu");
         // UnityEditor.EditorApplication.isPaused = true;
     }
 
     private void LooseConsequences() {
-        if (gameAnalyzer != null) {
-            gameAnalyzer.ShowAnalysis();
-        }
         if (checkpoint.IsActivated) {
             checkpoint.Call();
             looseCondition.IsLoosing = false;
