@@ -17,8 +17,7 @@ public class GroundDistance : MonoBehaviour
     private VerticalState state;
     private bool isEnable = true;
     private bool jumpIsBuffered = false;
-    private bool doubleJumpPower = false; 
-    public SizeChanger sizeChanger;
+    private bool doubleJumpPower = false;
 
 #region Functions Unity     
     private void Start() {
@@ -71,14 +70,8 @@ public class GroundDistance : MonoBehaviour
         // Without wall jump
         if (doubleJumpPower) {
             min_angle = -0.25f;
-            if (sizeChanger.CurrentSize == SizeChanger.Sizes.Small) {
-                min_angle = -0.75f;
-            }
         } else {
             min_angle = -0.95f;
-            if (sizeChanger.CurrentSize == SizeChanger.Sizes.Small) {
-                min_angle = -1.45f;
-            }
         }
 
         for(float i = min_angle; i > -10.0f; i -= 0.25f) {
