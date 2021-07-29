@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStamina: 10
   maxStamina: 10
+  recoverSpeed: 0.8
+  consumingSpeed: 0.5

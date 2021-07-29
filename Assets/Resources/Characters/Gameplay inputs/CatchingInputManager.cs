@@ -24,6 +24,10 @@ public class CatchingInputManager : MonoBehaviour
 
     private Dictionary<CatchAction.Direction, Vector2> jumpDirection;
 
+    [Header("Player inputs mapping")]
+    [SerializeField]
+    private InputsMapping playerInputsMapping;
+
 #region Functions Unity
     void Start() {
         actionsManager = GetComponent<ActionsManager>();
@@ -112,6 +116,7 @@ public class CatchingInputManager : MonoBehaviour
         }
     }
     private void UpdateActionMap(string newMap) {
+        playerInputsMapping.UpdateMappingName(newMap);
         playerInput.SwitchCurrentActionMap(newMap);
     }
 #endregion    

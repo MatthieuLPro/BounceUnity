@@ -40,6 +40,14 @@ namespace Horizontal {
             return directionAnimatorFloat[CurrentDirection];
         }
 
+        public bool IsLeft() {
+            return CurrentDirection == Directions.Left;
+        }
+
+        public bool IsRight() {
+            return CurrentDirection == Directions.Right;
+        }
+
     #endregion
     #region Private Functions
         private void InitAnimatorDictionary() {

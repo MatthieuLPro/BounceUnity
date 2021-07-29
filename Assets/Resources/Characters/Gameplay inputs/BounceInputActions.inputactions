@@ -309,6 +309,14 @@
                     "interactions": "Press"
                 },
                 {
+                    "name": "CatchBox",
+                    "type": "Button",
+                    "id": "eabddcae-0556-4cea-ac83-27200b7ab4ee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
                     "name": "Dash",
                     "type": "Button",
                     "id": "92cdc348-be2b-4297-9661-90e783dece28",
@@ -647,6 +655,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Activation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75355c1a-543a-44ab-a4e1-525557c24fe2",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CatchBox",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -11,6 +11,13 @@ public class GameplayInputManager : MonoBehaviour
     [SerializeField]
     private CatchAction catchScript;
 
+    [Header("Catch box start")]
+    [SerializeField]
+    private UnityEvent catchBoxStart;
+    [Header("Catch box cancel")]
+    [SerializeField]
+    private UnityEvent catchBoxCancel;
+
     [Header("Read action")]
     [SerializeField]
     private Dialog dialogScript;
@@ -39,14 +46,6 @@ public class GameplayInputManager : MonoBehaviour
     [SerializeField]
     private DashAction dashScript;
 
-    [Header("Change size action")]
-    [SerializeField]
-    private SizeChanger sizeChanger;
-
-    [Header("Change mass action")]
-    [SerializeField]
-    private MassChanger massChanger;
-
     [Header("Player input")]
     [SerializeField]
     private PlayerInput playerInput;
@@ -57,6 +56,9 @@ public class GameplayInputManager : MonoBehaviour
 
     private ActionsManager actionsManager;
  
+    [Header("Player inputs mapping")]
+    [SerializeField]
+    private InputsMapping playerInputsMapping;
     
 
 #region Functions Unity
@@ -114,6 +116,16 @@ public class GameplayInputManager : MonoBehaviour
         }
     }
 
+    public void OnCatchBox(InputAction.CallbackContext context) {
+        if (context.interaction is PressInteraction) {
+            if (context.started) {          
+                catchBoxStart.Invoke();
+            } else if (context.canceled) {        
+                catchBoxCancel.Invoke();
+            }
+        }
+    }
+
     public void OnDash(InputAction.CallbackContext context) {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Dash)) {
             if (context.started) {
@@ -150,21 +162,7 @@ public class GameplayInputManager : MonoBehaviour
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Menu)) {
             if (context.started) {
                 menuScript.Call();
-                UpdateActionMap("Menus");
-            }
-        }
-    }
-
-    public void OnChangeSizeSmall(InputAction.CallbackContext context) {
-        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.SmallSize)) {
-            if (context.started) {
-                if (sizeChanger.CurrentSize == SizeChanger.Sizes.Standard) {
-                    sizeChanger.Call(SizeChanger.Sizes.Small);
-                    massChanger.Call(MassChanger.Masses.Small);
-                } else {
-                    sizeChanger.Call(SizeChanger.Sizes.Standard);
-                    massChanger.Call(MassChanger.Masses.Standard);
-                }
+                UpdateActionMap("Menu");
             }
         }
     }
@@ -202,8 +200,8 @@ public class GameplayInputManager : MonoBehaviour
         }
     }
 
-
     private void UpdateActionMap(string newMap) {
+        playerInputsMapping.UpdateMappingName(newMap);
         playerInput.SwitchCurrentActionMap(newMap);
     }
 #endregion    

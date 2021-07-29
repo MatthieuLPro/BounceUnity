@@ -16,6 +16,10 @@ public class MenusInputManager : MonoBehaviour
     [Header("Menu manager")]
     [SerializeField]
     private MenuManager menuManager;
+    
+    [Header("Player inputs mapping")]
+    [SerializeField]
+    private InputsMapping playerInputsMapping;
 
 #region Functions public
     public void OnMove(InputAction.CallbackContext context) {
@@ -39,6 +43,7 @@ public class MenusInputManager : MonoBehaviour
 #endregion
 #region Functions private
     private void UpdateActionMap(string newMap) {
+        playerInputsMapping.UpdateMappingName(newMap);
         playerInput.SwitchCurrentActionMap(newMap);
     }
 #endregion 
