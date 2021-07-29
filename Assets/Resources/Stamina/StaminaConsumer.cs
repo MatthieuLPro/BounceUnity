@@ -6,7 +6,7 @@ namespace Stamina {
     public class StaminaConsumer : MonoBehaviour
     {
         private StaminaData data;
-        private bool consumingIsLaunched = false;
+        private Coroutine staminaConsuming = null;
 
         #region Public Functions
             public void Initialize(StaminaData staminaData) {
@@ -16,30 +16,33 @@ namespace Stamina {
                 data = staminaData;
             }
 
-            public void Call(int value) {
-                if (!IsConsuming() && !data.StaminaIsEmpty()) {
-                    StartCoroutine(ConsumingStamina(value));
+            public void TryToConsume(int value) {
+                if (StaminaIsEmpty() && !IsConsuming()) {
+                    staminaConsuming = StartCoroutine(ConsumingStamina(value));
                 }
+            }
+
+            public void UpdateConsumingState(bool value) {
+                data.UpdateConsumingState(value);
             }
         #endregion
         #region Private Functions
-            private IEnumerator ConsumingStamina(int value) {
-                consumingIsLaunched = true;
-                yield return new WaitForSeconds(ConsumingSpeed());
-                data.UpdateCurrentStamina(value * -1);
-                consumingIsLaunched = false;
-            }
-
-            private bool IsConsuming() {
-                return consumingIsLaunched;
-            }
-
             private bool StaminaIsEmpty() {
                 return data.StaminaIsNotEmpty();
             }
 
+            private bool IsConsuming() {
+                return staminaConsuming != null;
+            }
+            
+            private IEnumerator ConsumingStamina(int value) {
+                yield return new WaitForSeconds(ConsumingSpeed());
+                data.UpdateCurrentStamina(value * -1);
+                staminaConsuming = null;
+            }            
+
             private float ConsumingSpeed() {
-                return data.ConsumingSpeed();
+                return data.consumingSpeed;
             }
         #endregion
     }

@@ -21,17 +21,17 @@ namespace Stamina {
 
         void Update() {
             if (!data.IsConsuming()) {
-                staminaRecoverer.Call();
+                staminaRecoverer.TryToRecover(1);
             }
         }
     #endregion
     #region Public Functions
         public void ConsumeStamina(int value) {
-            staminaConsumer.Call(value);
+            staminaConsumer.TryToConsume(value);
         }
 
         public void UpdateConsumingStamina(bool value) {
-            data.UpdateConsumingState(value);
+            staminaConsumer.UpdateConsumingState(value);
         }
     #endregion
     }

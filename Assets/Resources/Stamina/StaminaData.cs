@@ -37,15 +37,6 @@ public class StaminaData : ScriptableObject
         currentStamina += variation;
     }
 
-    // recoverSpeed
-    public float RecoverSpeed() {
-        return recoverSpeed;
-    }    
-    // consumingSpeed
-    public float ConsumingSpeed() {
-        return consumingSpeed;
-    }
-    // isConsuming
     public bool IsConsuming() {
         return isConsuming;
     }

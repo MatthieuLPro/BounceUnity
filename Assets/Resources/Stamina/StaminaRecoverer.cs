@@ -6,7 +6,7 @@ namespace Stamina {
     public class StaminaRecoverer : MonoBehaviour
     {
         private StaminaData data;
-        private bool recoveringIsLaunched = false;
+        private Coroutine staminaRecovering = null;
 
         #region Public Functions
             public void Initialize(StaminaData staminaData) {
@@ -16,30 +16,29 @@ namespace Stamina {
                 data = staminaData;
             }
 
-            public void Call() {
-                if (!IsRecovering() && !StaminaIsFull()) {
-                    StartCoroutine(RecoverStamina());
+            public void TryToRecover(int value) {
+                if (!StaminaIsFull() && !IsRecovering()) {
+                    staminaRecovering = StartCoroutine(RecoverStamina(value));
                 }
             }
         #endregion
         #region Private Functions
-            private IEnumerator RecoverStamina() {
-                recoveringIsLaunched = true;
-                yield return new WaitForSeconds(RecoverSpeed());
-                data.UpdateCurrentStamina(1);
-                recoveringIsLaunched = false;
-            }
-
-            private bool IsRecovering() {
-                return recoveringIsLaunched;
-            }
-
             private bool StaminaIsFull() {
                 return data.CurrentStaminaIsFull();
             }
 
+            private bool IsRecovering() {
+                return staminaRecovering != null;
+            }
+
+            private IEnumerator RecoverStamina(int value) {
+                yield return new WaitForSeconds(RecoverSpeed());
+                data.UpdateCurrentStamina(value);
+                staminaRecovering = null;
+            }
+
             private float RecoverSpeed() {
-                return data.RecoverSpeed();
+                return data.recoverSpeed;
             }
         #endregion
     }
