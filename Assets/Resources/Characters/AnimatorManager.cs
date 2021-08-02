@@ -16,9 +16,9 @@ public class AnimatorManager : MonoBehaviour
     [SerializeField]
     private VerticalState yState;
 
-    [Header("Catch state")]
+    [Header("Climbing state")]
     [SerializeField]
-    private CatchAction catchState;
+    private Climber climbingState;
 
     [Header("Vertical Movement")]
     [SerializeField]
@@ -33,9 +33,9 @@ public class AnimatorManager : MonoBehaviour
 
     void Update()
     {
-        UpdateBoolState("isCatching", catchState.IsCatching());
-        if (catchState.IsCatching()) {
-            UpdateBoolState("isCatchingMoving", verticalMoveState.IsMoving);
+        UpdateBoolState("isClimbing", climbingState.IsClimbing());
+        if (climbingState.IsClimbing()) {
+            UpdateBoolState("isClimbingMoving", verticalMoveState.IsMoving);
 
             UpdateBoolState("isWalking", false);
             UpdateBoolState("isRunning", false);
@@ -43,7 +43,7 @@ public class AnimatorManager : MonoBehaviour
             UpdateBoolState("isJumping", false);
             UpdateBoolState("isFalling", false);
         } else {
-            UpdateBoolState("isCatchingMoving", false);
+            UpdateBoolState("isClimbingMoving", false);
 
             UpdateBoolState("isWalking", xState.IsWalking());
             UpdateBoolState("isRunning", xState.IsRunning());

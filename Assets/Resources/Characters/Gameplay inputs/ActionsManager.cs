@@ -118,6 +118,7 @@ public class ActionsManager : MonoBehaviour
         authorizedActions.Add(Actions.HorizontalMove);
         authorizedActions.Add(Actions.Jump);
         authorizedActions.Add(Actions.Menu);
+        authorizedActions.Add(Actions.Catch);
     }
 #endregion
 }

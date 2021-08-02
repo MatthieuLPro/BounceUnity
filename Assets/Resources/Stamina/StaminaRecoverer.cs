@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Stamina {
+    /// <summary>
+    ///     Concern : Recover the stamina.
+    ///     Usage : Used with StaminaCore. It should not add manually into a gameObject.
+    ///     Dependency :
+    ///         - StaminaData
+    /// </summary>
     public class StaminaRecoverer : MonoBehaviour
     {
         private StaminaData data;

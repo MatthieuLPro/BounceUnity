@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class CatchingInputManager : MonoBehaviour
+public class ClimbingInputManager : MonoBehaviour
 {
     [Header("Catch action")]
     [SerializeField]
-    private CatchAction catchScript;
+    private Climber climber;
     [Header("Move action")]
     [SerializeField]
     private VerticalMoveAction moveScript;
@@ -22,7 +22,7 @@ public class CatchingInputManager : MonoBehaviour
 
     private ActionsManager actionsManager;
 
-    private Dictionary<CatchAction.Direction, Vector2> jumpDirection;
+    private Dictionary<Climber.Direction, Vector2> jumpDirection;
 
     [Header("Player inputs mapping")]
     [SerializeField]
@@ -32,10 +32,10 @@ public class CatchingInputManager : MonoBehaviour
     void Start() {
         actionsManager = GetComponent<ActionsManager>();
 
-        jumpDirection = new Dictionary<CatchAction.Direction, Vector2>();
-        jumpDirection.Add(CatchAction.Direction.Right, new Vector2(-1.0f, 0.5f));
-        jumpDirection.Add(CatchAction.Direction.Left, new Vector2(1.0f, 0.5f));
-        jumpDirection.Add(CatchAction.Direction.None, Vector2.zero);
+        jumpDirection = new Dictionary<Climber.Direction, Vector2>();
+        jumpDirection.Add(Climber.Direction.Right, new Vector2(-1.0f, 0.5f));
+        jumpDirection.Add(Climber.Direction.Left, new Vector2(1.0f, 0.5f));
+        jumpDirection.Add(Climber.Direction.None, Vector2.zero);
     }
     void Update() {
         Move();
@@ -58,7 +58,7 @@ public class CatchingInputManager : MonoBehaviour
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Catch)) {
             if (context.interaction is PressInteraction) {
                 if (context.started) {
-                    catchScript.Cancel();
+                    climber.CancelClimbing();
                     UpdateActionMap("Gameplay");
                 }
             }
@@ -69,8 +69,8 @@ public class CatchingInputManager : MonoBehaviour
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Jump)) {
             if (context.interaction is PressInteraction) {
                 if (context.started) {
-                    Vector2 direction = jumpDirection[catchScript.CurrentDirection()];
-                    catchScript.Cancel();
+                    Vector2 direction = jumpDirection[climber.CurrentDirection()];
+                    climber.CancelClimbing();
                     jumpScript.CallStartCatching(direction);
                     StartCoroutine(BlockHorizontalMovement());
                 }
@@ -90,17 +90,17 @@ public class CatchingInputManager : MonoBehaviour
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, true);
         UpdateActionMap("Gameplay");
     }
-    private void CliffJump(CatchAction.Direction xDirection) {
+    private void CliffJump(Climber.Direction xDirection) {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
             Vector2 yVector = jumpDirection[xDirection];
-            catchScript.Cancel();
+            climber.CancelClimbing();
             jumpScript.CallStartCatchingCliff(yVector);
             StartCoroutine(BlockHorizontalMovement());
         }
     }
     private void Move() {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
-            CatchAction.Direction xDirection = catchScript.CurrentDirection();
+            Climber.Direction xDirection = climber.CurrentDirection();
             if (yDirection != .0f) {
                 if (moveScript.IsInCliffEdge(xDirection, yDirection)) {
                     if (yDirection > 0) {

@@ -40,7 +40,7 @@ public class VerticalMoveAction : MonoBehaviour
         transform.Translate(newVector * Time.deltaTime);
     }
 
-    public bool IsInCliffEdge(CatchAction.Direction xDirection, float yDirection) {
+    public bool IsInCliffEdge(Climber.Direction xDirection, float yDirection) {
         bool result = true;
         Vector2[] vectorsCollectionCliff = VectorsCollectionCliff(xDirection, yDirection);
         Vector2[] vectorsCollectionTopAndDown = VectorsCollectionTopAndDown(yDirection);
@@ -67,10 +67,10 @@ public class VerticalMoveAction : MonoBehaviour
         movementThrustDictionary.Add(MovementType.Walking, WALK_THRUST);
     }
     // We need to check if the object is in contact with the cliff 
-    private Vector2[] VectorsCollectionCliff(CatchAction.Direction xDirection, float yDirection) {
+    private Vector2[] VectorsCollectionCliff(Climber.Direction xDirection, float yDirection) {
         switch (xDirection)
         {
-            case CatchAction.Direction.Left:
+            case Climber.Direction.Left:
                 if(yDirection > 0) {
                     return new Vector2[1] { new Vector2(-1f, 0.25f) };
                 } else {

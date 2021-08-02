@@ -9,7 +9,7 @@ public class GameplayInputManager : MonoBehaviour
 {
     [Header("Catch action")]
     [SerializeField]
-    private CatchAction catchScript;
+    private Climber climber;
 
     [Header("Catch box start")]
     [SerializeField]
@@ -107,10 +107,8 @@ public class GameplayInputManager : MonoBehaviour
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Catch)) {
             if (context.interaction is PressInteraction) {
                 if (context.started) {
-                    catchScript.Call();
-                    if (catchScript.IsCatching()) {
-                        UpdateActionMap("Catching");
-                    }
+                    climber.StartClimbing();
+                    UpdateActionMap("Climbing");
                 }
             }
         }

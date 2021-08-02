@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Stamina {
+    /// <summary>
+    ///     Concern : Manage the logic of stamina consuming and recovering.
+    ///     Usage : Attached to a gameObject
+    ///     Dependency : 
+    ///         - Stamina.StaminaRecoverer
+    ///         - Stamina.StaminaConsumer
+    ///         - StaminaData
+    /// </summary>
     public class StaminaCore : MonoBehaviour
     {
-        [SerializeField]
-        private StaminaData data;
+        public StaminaData data;
 
         private Stamina.StaminaRecoverer staminaRecoverer;
         private Stamina.StaminaConsumer staminaConsumer;
@@ -20,18 +27,20 @@ namespace Stamina {
         }
 
         void Update() {
-            if (!data.IsConsuming()) {
+            if (!data.StaminaIsEmpty() && data.IsConsuming()) {
+                staminaConsumer.TryToConsume(1);
+            }
+            else if (!data.CurrentStaminaIsFull()) {
                 staminaRecoverer.TryToRecover(1);
             }
         }
     #endregion
     #region Public Functions
-        public void ConsumeStamina(int value) {
-            staminaConsumer.TryToConsume(value);
-        }
-
         public void UpdateConsumingStamina(bool value) {
             staminaConsumer.UpdateConsumingState(value);
+        }
+        public bool CanConsumeStamina() {
+            return !data.StaminaIsEmpty();
         }
     #endregion
     }

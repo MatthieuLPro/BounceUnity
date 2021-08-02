@@ -2,7 +2,7 @@
     "name": "BounceInputActions",
     "maps": [
         {
-            "name": "Catching",
+            "name": "Climbing",
             "id": "72996256-46ca-40eb-8907-edbd5eeb7d23",
             "actions": [
                 {
@@ -14,7 +14,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "Catch",
+                    "name": "Climb",
                     "type": "Button",
                     "id": "f1e852fa-e937-4e3a-8317-76bc636fc903",
                     "expectedControlType": "Button",
@@ -211,7 +211,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Catch",
+                    "action": "Climb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -222,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Catch",
+                    "action": "Climb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -301,17 +301,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Catch",
+                    "name": "CatchBox",
                     "type": "Button",
-                    "id": "6ad0cdf9-0991-4573-a032-151dc9c3a7b4",
+                    "id": "eabddcae-0556-4cea-ac83-27200b7ab4ee",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
                 },
                 {
-                    "name": "CatchBox",
+                    "name": "Climb",
                     "type": "Button",
-                    "id": "eabddcae-0556-4cea-ac83-27200b7ab4ee",
+                    "id": "6ad0cdf9-0991-4573-a032-151dc9c3a7b4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -561,28 +561,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d97b6d16-78bc-4b55-8568-f1cc381fb651",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Catch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6b7d89b5-0833-4a6d-9e29-b77e9167ca2f",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Catch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b2fde2e2-eaad-4adc-9f7e-dd4ff2c32134",
                     "path": "<Gamepad>/start",
                     "interactions": "",
@@ -666,6 +644,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "CatchBox",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d97b6d16-78bc-4b55-8568-f1cc381fb651",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Climb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b7d89b5-0833-4a6d-9e29-b77e9167ca2f",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Climb",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

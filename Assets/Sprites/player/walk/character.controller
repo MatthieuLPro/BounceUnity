@@ -40,10 +40,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: isCatchingMoving
+    m_ConditionEvent: isClimbingMoving
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4486269365492690760}
@@ -68,7 +68,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isFalling
@@ -167,7 +167,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isJumping
@@ -310,10 +310,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isCatchingMoving
+    m_ConditionEvent: isClimbingMoving
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4961124801365111169}
@@ -344,13 +344,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isCatching
+  - m_Name: isClimbing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isCatchingMoving
+  - m_Name: isClimbingMoving
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -467,7 +467,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isFalling
@@ -628,7 +628,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isFalling
@@ -713,7 +713,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: catchMove
+  m_Name: climbMove
   m_Speed: 0.25
   m_CycleOffset: 0
   m_Transitions:
@@ -798,7 +798,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: catch
+  m_Name: climb
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1031,7 +1031,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isJumping
@@ -1059,10 +1059,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isCatching
+    m_ConditionEvent: isClimbing
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: isCatchingMoving
+    m_ConditionEvent: isClimbingMoving
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4961124801365111169}
