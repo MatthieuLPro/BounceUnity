@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.Events;
 
 public class ClimbingInputManager : MonoBehaviour
 {
     [Header("Catch action")]
     [SerializeField]
     private Climber climber;
+
+    [Header("Climbing cancel")]
+    [SerializeField]
+    private UnityEvent climbingCancel;
+
     [Header("Move action")]
     [SerializeField]
     private VerticalMoveAction moveScript;

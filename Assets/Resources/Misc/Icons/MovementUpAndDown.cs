@@ -17,5 +17,5 @@ public class MovementUpAndDown : MonoBehaviour
     {
         float newY = Mathf.Sin(Time.time * speed) * height + pos.y;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z) ;
-    } 
+    }
 }

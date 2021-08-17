@@ -11,9 +11,9 @@ namespace Stamina {
     /// </summary>
     public class StaminaUI : MonoBehaviour
     {
-        [Header("Image rect transform")]
+        [Header("Current stamina image")]
         [SerializeField]
-        private RectTransform imageRectTransform;
+        private RectTransform currentStaminaImage;
 
         private StaminaData staminaData;
 
@@ -24,7 +24,7 @@ namespace Stamina {
 
         void Update() {
             if (!staminaData.StaminaIsMax()) {
-                imageRectTransform.sizeDelta = newSize();
+                currentStaminaImage.sizeDelta = newSize();
             }
         }
 

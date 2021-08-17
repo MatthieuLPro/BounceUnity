@@ -7,9 +7,13 @@ using UnityEngine.Events;
 
 public class GameplayInputManager : MonoBehaviour
 {
-    [Header("Catch action")]
+    [Header("Climbing start")]
     [SerializeField]
-    private Climber climber;
+    private UnityEvent climbingStart;
+
+    [Header("Interaction launcher")]
+    [SerializeField]
+    private UnityEvent interactionLauncher;
 
     [Header("Catch box start")]
     [SerializeField]
@@ -86,15 +90,16 @@ public class GameplayInputManager : MonoBehaviour
     }
 
     public void OnActivation(InputAction.CallbackContext context) {
-        if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Activate)) {
+        // if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Activate)) {
             if (context.started) {
-                activationManager.Call();
-                UpdateActionsForActivation(false);
-                if (activationManager.ActivationIsFinished()) {
-                    UpdateActionsForActivation(true);
-                }
+                interactionLauncher.Invoke();
+                // activationManager.Call();
+                // UpdateActionsForActivation(false);
+                // if (activationManager.ActivationIsFinished()) {
+                //     UpdateActionsForActivation(true);
+                // }
             }
-        }
+        // }
     }
 
     // Should be in specific input manager
@@ -107,7 +112,9 @@ public class GameplayInputManager : MonoBehaviour
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Catch)) {
             if (context.interaction is PressInteraction) {
                 if (context.started) {
-                    climber.StartClimbing();
+                    climbingStart.Invoke();
+                    // BUG : There is a bug here if the climbing cannot start, we should not 
+                    // update the input map
                     UpdateActionMap("Climbing");
                 }
             }
