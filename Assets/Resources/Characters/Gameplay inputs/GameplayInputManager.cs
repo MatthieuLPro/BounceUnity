@@ -90,16 +90,9 @@ public class GameplayInputManager : MonoBehaviour
     }
 
     public void OnActivation(InputAction.CallbackContext context) {
-        // if (actionsManager.ActionIsAvailable(ActionsManager.Actions.Activate)) {
-            if (context.started) {
-                interactionLauncher.Invoke();
-                // activationManager.Call();
-                // UpdateActionsForActivation(false);
-                // if (activationManager.ActivationIsFinished()) {
-                //     UpdateActionsForActivation(true);
-                // }
-            }
-        // }
+        if (context.started) {
+            interactionLauncher.Invoke();
+        }
     }
 
     // Should be in specific input manager

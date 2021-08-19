@@ -17,9 +17,10 @@ public class Climber : MonoBehaviour
     [SerializeField]
     private GameObject go; 
 
-    [Header("Horizontal direction")]
+    [Header("Movement Horizontal direction")]
     [SerializeField]
-    private Horizontal.DirectionState horizontalDirectionState;
+    private MovementDirection horizontalDirection;
+
 
     private Rigidbody2D rb2d;
     private WallDistance wallDistance;
@@ -57,9 +58,9 @@ public class Climber : MonoBehaviour
     // Should call specific function depending of the 
     // Movement direction
     public void StartClimbing() {
-        if (horizontalDirectionState.CurrentDirection == Horizontal.DirectionState.Directions.Left && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.left })) {
+        if (horizontalDirection.IsLeft() && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.left })) {
             SetClimbingStatus(Direction.Left);
-        } else if (horizontalDirectionState.CurrentDirection == Horizontal.DirectionState.Directions.Right && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.right })){
+        } else if (horizontalDirection.IsRight() && wallDistance.CheckContactWithWall(new Vector2[1] { Vector2.right })) {
             SetClimbingStatus(Direction.Right);
         }
     }

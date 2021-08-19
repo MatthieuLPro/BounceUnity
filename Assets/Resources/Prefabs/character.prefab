@@ -60,7 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25807774b5852564996c3fa5f7b01e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalDirectionState: {fileID: 8415344020814934720}
+  horizontalDirection: {fileID: 11400000, guid: 728650caa1f6afe7d839502398530e6d,
+    type: 2}
 --- !u!1 &485745557786827937
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcad3fc27a7149d89c122e6494d6501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionState: {fileID: 8415344020814934720}
+  horizontalDirection: {fileID: 11400000, guid: 728650caa1f6afe7d839502398530e6d,
+    type: 2}
   rb2D: {fileID: 4103918215236985873}
 --- !u!1 &1099808999430437864
 GameObject:
@@ -5190,7 +5192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go: {fileID: 4103918215236985877}
-  horizontalDirectionState: {fileID: 8415344020814934720}
+  horizontalDirection: {fileID: 11400000, guid: 728650caa1f6afe7d839502398530e6d,
+    type: 2}
   playerInput: {fileID: 5145931101355346448}
 --- !u!114 &3062776748582250774
 MonoBehaviour:
@@ -5723,8 +5726,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e67df121a5b6904ea7acfc04799b52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xDirection: {fileID: 8415344020814934720}
-  xState: {fileID: 5344148968516086136}
+  horizontalDirection: {fileID: 11400000, guid: 728650caa1f6afe7d839502398530e6d,
+    type: 2}
+  horizontalState: {fileID: 11400000, guid: 60bf06beb9867197fb66cb0ae8c6b954, type: 2}
   yState: {fileID: 4103918216960457156}
   climbingState: {fileID: 0}
   verticalMoveState: {fileID: 2602235143676969020}
@@ -5924,8 +5928,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4863561234413854055}
-  - component: {fileID: 8415344020814934720}
-  - component: {fileID: 5344148968516086136}
   - component: {fileID: 9134920572593286310}
   m_Layer: 0
   m_Name: Horizontal
@@ -5948,30 +5950,6 @@ Transform:
   m_Father: {fileID: 4103918215236985874}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8415344020814934720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5492009678619022091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a281bf0494534e77988fef5acbb2416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5344148968516086136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5492009678619022091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ebe1d7fc16abdb9998025b42a08bd3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9134920572593286310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5986,6 +5964,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   go: {fileID: 4103918215236985877}
   dust: {fileID: 8976612896464075559}
+  currentMovementState: {fileID: 11400000, guid: 60bf06beb9867197fb66cb0ae8c6b954,
+    type: 2}
+  horizontalDirection: {fileID: 11400000, guid: 728650caa1f6afe7d839502398530e6d,
+    type: 2}
 --- !u!1 &5735500187090661802
 GameObject:
   m_ObjectHideFlags: 0

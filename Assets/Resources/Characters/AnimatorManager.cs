@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
-    [Header("Horizontal direction")]
+    [Header("Movement Horizontal direction")]
     [SerializeField]
-    private Horizontal.DirectionState xDirection;
+    private MovementDirection horizontalDirection;
 
-    [Header("Horizontal state")]
+    [Header("Movement Horizontal state")]
     [SerializeField]
-    private HorizontalState xState;
+    private MovementState horizontalState;
+
+    
 
     [Header("Vertical state")]
     [SerializeField]
@@ -38,21 +40,20 @@ public class AnimatorManager : MonoBehaviour
             UpdateBoolState("isClimbingMoving", verticalMoveState.IsMoving);
 
             UpdateBoolState("isWalking", false);
-            UpdateBoolState("isRunning", false);
 
             UpdateBoolState("isJumping", false);
             UpdateBoolState("isFalling", false);
         } else {
             UpdateBoolState("isClimbingMoving", false);
 
-            UpdateBoolState("isWalking", xState.IsWalking());
-            UpdateBoolState("isRunning", xState.IsRunning());
+            UpdateBoolState("isWalking", horizontalState.IsWalking());
+            UpdateBoolState("isRunning", horizontalState.IsRunning());
 
             UpdateBoolState("isJumping", yState.IsJumping());
             UpdateBoolState("isFalling", yState.IsFalling());
         }
 
-        UpdateFloatState("xDirection", xDirection.DirectionToAnimatorFloat());
+        UpdateFloatState("xDirection", horizontalDirection.DirectionToAnimatorFloat());
     }
 #endregion
 #region Private functions

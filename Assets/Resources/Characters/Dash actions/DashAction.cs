@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DashAction : MonoBehaviour
 {
-    [Header("Direction")]
+    [Header("Movement Horizontal direction")]
     [SerializeField]
-    private Horizontal.DirectionState directionState;
+    private MovementDirection horizontalDirection;
+
     [Header("Rigidbody")]
     [SerializeField]
     private Rigidbody2D rb2D;
@@ -25,7 +26,7 @@ public class DashAction : MonoBehaviour
     // Call this function to launch the dash
     public void CallStart() {
         StartCoroutine(FreezeYConstraint());
-        rb2D.AddForce(new Vector2(directionState.DirectionToFloat(), .0f) * THRUST);
+        rb2D.AddForce(new Vector2(horizontalDirection.DirectionToFloat(), .0f) * THRUST);
         StartCoroutine(DashCooldown());
     }
 #endregion

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PushAction : MonoBehaviour
 {
-    [Header("Horizontal direction")]
+    [Header("Movement Horizontal direction")]
     [SerializeField]
-    private Horizontal.DirectionState horizontalDirectionState;
+    private MovementDirection horizontalDirection;
 
     private BoxDistance boxDistance;
 
@@ -18,13 +18,13 @@ public class PushAction : MonoBehaviour
     }
 
     public void Call() {
-        if (horizontalDirectionState.IsLeft() && IsInContact(new Vector2[1] { Vector2.left })) {
+        if (horizontalDirection.IsLeft() && IsInContact(new Vector2[1] { Vector2.left })) {
             Debug.Log("Call on Left");
             box = boxDistance.BoxInContact(new Vector2[1] { Vector2.left });
             box.GetComponent<FixedJoint2D>().enabled = true;
             box.GetComponent<BoxMovement>().isPushed = true;
             box.GetComponent<FixedJoint2D>().connectedBody = transform.parent.GetComponent<Rigidbody2D>();
-        } else if (horizontalDirectionState.IsRight() && IsInContact(new Vector2[1] { Vector2.right })){
+        } else if (horizontalDirection.IsRight() && IsInContact(new Vector2[1] { Vector2.right })){
             Debug.Log("Call on Right");
             box = boxDistance.BoxInContact(new Vector2[1] { Vector2.right });
             box.GetComponent<BoxMovement>().isPushed = true;

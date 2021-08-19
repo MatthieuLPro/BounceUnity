@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Interaction {
     /// <summary>
     ///     Concern : Constants list for interaction namespace.
-    ///     Usage : Attached to a gameObject with 1 boxCollider and 1 component "Interaction" with 1 nested component "CurrentInteraction"
     /// </summary>
     public static class Constants
     {
