@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +10,13 @@ namespace Interaction {
         ///         - Facade to call the specific launcher
         ///     Usage : Added by a newInteractionTrigger and launched by InteractionLauncher
         ///     Dependency : 
-        ///         - Lizard.Interaction.Launcher
+        ///         - Firplace.Interaction.Launcher
         /// </summary>
-        public class LizardInteraction : CoreInteraction
+        public class FireplaceInteraction : CoreInteraction
         {
-            public static LizardInteraction CreateComponent (GameObject where, GameObject holder) {
-                LizardInteraction interaction = where.AddComponent<LizardInteraction>();
-                interaction.toDisplay = "Eat the lizard interaction";
+            public static FireplaceInteraction CreateComponent (GameObject where, GameObject holder) {
+                FireplaceInteraction interaction = where.AddComponent<FireplaceInteraction>();
+                interaction.toDisplay = "Active fireplace interaction";
                 interaction.holder = holder;
                 return interaction;
             }
@@ -25,7 +25,7 @@ namespace Interaction {
                 Debug.Log(toDisplay);
                 // Stop the game
                 // Do an animation
-                holder.transform.Find("Interaction").GetComponent<Lizard.Interaction.Launcher>().Call();
+                holder.transform.Find("Interaction").GetComponent<Fireplace.Interaction.Launcher>().Call();
                 // Destroy the holder
                 // Resume the game
             }

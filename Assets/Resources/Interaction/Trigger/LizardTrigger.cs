@@ -5,12 +5,14 @@ using UnityEngine;
 namespace Interaction {
     namespace Trigger {
         /// <summary>
-        ///     Concern : Add / remove new interaction.
-        ///     Usage : Attached to a gameObject with 1 boxCollider and 1 component "Interaction" with 1 nested component "CurrentInteraction"
+        ///     Concern :
+        ///         - Add the component LizardInteraction when a player enter in the boxCollider.
+        ///         - Remove the component LizardInteraction when a player exit from the boxCollider.
+        ///     Usage : Attached to a gameObject with 1 boxCollider
         ///     Dependency : 
         ///         - Dictionary.LizardInteraction
         /// </summary>
-        public class LizardInteraction : CoreNewInteraction
+        public class LizardTrigger : CoreTrigger
         {
             public override void RemoveInteraction(GameObject interactionObject) {
                 Destroy(interactionObject.GetComponent(typeof(Dictionary.LizardInteraction)));

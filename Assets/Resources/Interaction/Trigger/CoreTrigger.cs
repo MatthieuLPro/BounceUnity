@@ -5,12 +5,14 @@ using UnityEngine;
 namespace Interaction {
     namespace Trigger {
         /// <summary>
-        ///     Concern : Add / remove default interaction.
-        ///     Usage : Attached to a gameObject with 1 boxCollider and 1 component "Interaction" with 1 nested component "CurrentInteraction"
+        ///     Concern :
+        ///         - Add an interaction when a player enter in the boxCollider.
+        ///         - Remove an interaction when a player exit from the boxCollider.
+        ///     Usage : All interaction trigger must inherite from the class CoreTrigger (except defaultTrigger)
         ///     Dependency : 
         ///         - Interaction.Constants
         /// </summary>
-        public class CoreNewInteraction : MonoBehaviour
+        public class CoreTrigger : MonoBehaviour
         {
             public void OnTriggerEnter2D(Collider2D collider) {
                 if (collider.tag == Interaction.Constants.PlayerTag) {
