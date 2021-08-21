@@ -12,10 +12,13 @@ namespace Interaction {
         ///     Dependency : 
         ///         - ???
         /// </summary>
-        public class DefaultInteraction : InteractionCore
+        public class DefaultInteraction : CoreInteraction
         {
-            void Start() {
-                toDisplay = "From null";
+            public static DefaultInteraction CreateComponent (GameObject where, GameObject holder) {
+                DefaultInteraction interaction = where.AddComponent<DefaultInteraction>();
+                interaction.toDisplay = "Do nothing";
+                interaction.holder = holder;
+                return interaction;
             }
         }
     }

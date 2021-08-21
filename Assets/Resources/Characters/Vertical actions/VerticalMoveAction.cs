@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO : This is in climber namespace
 public class VerticalMoveAction : MonoBehaviour
 {
     [Header("Transform")]

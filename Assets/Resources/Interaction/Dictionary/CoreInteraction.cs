@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace Interaction {
     namespace Dictionary {
-        public class InteractionCore : MonoBehaviour
+        public class CoreInteraction : MonoBehaviour
         {
             public string toDisplay;
+            public GameObject holder;
             
-            public void Call() {
+            public virtual void Call() {
                 Debug.Log(toDisplay);
             }
         }
