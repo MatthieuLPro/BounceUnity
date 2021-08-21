@@ -31,8 +31,8 @@ public class GroundDistance : MonoBehaviour
         if (isEnable) {
             UpdateCheckDistance();
             if (CheckGrounded()) {
-                if (state.CurrentState != VerticalState.States.Standing) {
-                    state.CurrentState = VerticalState.States.Standing;
+                if (state.CurrentState != VerticalMovement.Constants.States.Standing) {
+                    state.CurrentState = VerticalMovement.Constants.States.Standing;
                     dust.Call();
                 }
                 if (jumpBuffer.IsBuffered()) {

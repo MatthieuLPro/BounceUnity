@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74d0724da49de63d0b1b4e497a562ba5, type: 3}
-  m_Name: PlayerMovementDirection
+  m_Name: Direction
   m_EditorClassIdentifier: Assembly-CSharp::HorizontalDirectionState
   currentDirection: 1

@@ -9,12 +9,11 @@ public class JumpBuffer : MonoBehaviour
     private JumpAction jumpAction;
 
     private float groundDistance;
-    private float SQUARE_DISTANCE_OFFSET = 15f;
     private bool jumpIsBuffered = false;
 
 #region Functions Unity     
     private void Start() {
-        groundDistance = collider.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
+        groundDistance = collider.bounds.extents.y + VerticalMovement.Constants.SQUARE_DISTANCE_OFFSET;
         jumpAction = GetComponent<JumpAction>();
     }
     private void Update() {
@@ -60,8 +59,8 @@ public class JumpBuffer : MonoBehaviour
         jumpIsBuffered = false;
     }
     private void UpdateCheckDistance() {
-        if (groundDistance != collider.bounds.extents.y + SQUARE_DISTANCE_OFFSET) {
-            groundDistance = collider.bounds.extents.y + SQUARE_DISTANCE_OFFSET;
+        if (groundDistance != collider.bounds.extents.y + VerticalMovement.Constants.SQUARE_DISTANCE_OFFSET) {
+            groundDistance = collider.bounds.extents.y + VerticalMovement.Constants.SQUARE_DISTANCE_OFFSET;
         }
     }
 #endregion

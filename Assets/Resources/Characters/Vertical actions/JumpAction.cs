@@ -21,15 +21,10 @@ public class JumpAction : MonoBehaviour
     private VerticalState stateMachine;
     private GroundDistance groundDistance;
     private JumpBuffer jumpBuffer; 
-    private float SOUND_VOLUME;
-
-    private float[] VERTICAL_THRUSTS;
     private int thrust_index;
 
     private bool isBuffering;
     private Coroutine tripleJumpCoroutine;
-    private float WALL_JUMP_THRUST;
-    private float CLIFF_JUMP_THRUST;
     private AudioClip[] SOUNDS;
 
 #region Unity Functions
@@ -38,13 +33,9 @@ public class JumpAction : MonoBehaviour
         groundDistance = GetComponent<GroundDistance>();
         jumpBuffer = GetComponent<JumpBuffer>();
 
-        SOUND_VOLUME = 0.2f;
-        VERTICAL_THRUSTS = new float[3] { 4500.0f, 6500.0f, 8500.0f };
         SOUNDS = new AudioClip[3] { soundLevel1, soundLevel2, soundLevel3 };
         thrust_index = 0;
         isBuffering = false;
-        WALL_JUMP_THRUST = 6500.0f;
-        CLIFF_JUMP_THRUST = 7500.0f;
     }
 #endregion
 #region Public Functions
@@ -55,7 +46,7 @@ public class JumpAction : MonoBehaviour
             // Remove DisableVerification when double jump is available
             StartCoroutine(groundDistance.DisableVerification());
             StopTripleJumpBuffer();
-            IncreaseJumpVelocity(Vector2.up, VERTICAL_THRUSTS[thrust_index]);
+            IncreaseJumpVelocity(Vector2.up, VerticalMovement.Constants.VERTICAL_THRUSTS[thrust_index]);
             StartTripleJumpBuffer();
         } else if (stateMachine.IsJumping() || stateMachine.IsFalling()) {
             JumpBuffer();
@@ -70,7 +61,7 @@ public class JumpAction : MonoBehaviour
             // Remove DisableVerification when double jump is available
             StartCoroutine(groundDistance.DisableVerification());
             ManageJumpHeight();
-            IncreaseJumpVelocity(Vector2.up, VERTICAL_THRUSTS[thrust_index]);
+            IncreaseJumpVelocity(Vector2.up, VerticalMovement.Constants.VERTICAL_THRUSTS[thrust_index]);
             ResetForJumpBuffer();
         }
     }
@@ -78,7 +69,7 @@ public class JumpAction : MonoBehaviour
     public void CallStartCatching(Vector2 direction) {
         StartCoroutine(groundDistance.DisableVerification());
         StopTripleJumpBuffer();
-        IncreaseJumpVelocity(direction, WALL_JUMP_THRUST);
+        IncreaseJumpVelocity(direction, VerticalMovement.Constants.WALL_JUMP_THRUST);
         StartTripleJumpBuffer();
     }
 
@@ -86,7 +77,7 @@ public class JumpAction : MonoBehaviour
         Vector2 newDirection = new Vector2(direction.x * -1, direction.y);
         StartCoroutine(groundDistance.DisableVerification());
         StopTripleJumpBuffer();
-        IncreaseJumpVelocity(newDirection, CLIFF_JUMP_THRUST);
+        IncreaseJumpVelocity(newDirection, VerticalMovement.Constants.CLIFF_JUMP_THRUST);
         StartTripleJumpBuffer();
     }
 
@@ -95,8 +86,8 @@ public class JumpAction : MonoBehaviour
     
     // JUMP = Start the jump action
     private void IncreaseJumpVelocity(Vector2 direction, float thrust) {
-        stateMachine.CurrentState = VerticalState.States.Jumping;
-        EazySoundManager.PlaySound(SOUNDS[thrust_index], SOUND_VOLUME);
+        stateMachine.CurrentState = VerticalMovement.Constants.States.Jumping;
+        EazySoundManager.PlaySound(SOUNDS[thrust_index], VerticalMovement.Constants.SOUND_VOLUME);
         rb2D.AddForce(direction * thrust);
     }
 

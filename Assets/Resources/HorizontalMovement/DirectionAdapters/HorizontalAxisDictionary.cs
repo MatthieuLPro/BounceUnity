@@ -8,7 +8,7 @@ namespace DirectionAdapters {
     ///     Dependency :
     ///         - HorizontalMovement.Constants 
     /// </summary>
-    public class HorizontalAxisDictionary : MonoBehaviour
+    public static class HorizontalAxisDictionary
     {
         private const float LeftInFloat = -1f;
         private const float RightInFloat = 1f;

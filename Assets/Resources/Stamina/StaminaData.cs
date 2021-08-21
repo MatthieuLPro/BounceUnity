@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName="StaminaData", menuName="ScriptableObjects/StaminaData", order=1)]
+[CreateAssetMenu(fileName="StaminaData", menuName="ScriptableObjects/Stamina/StaminaData", order=1)]
 public class StaminaData : ScriptableObject
 {
     public int currentStamina;

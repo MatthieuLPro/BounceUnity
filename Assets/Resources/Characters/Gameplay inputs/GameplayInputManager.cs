@@ -37,9 +37,9 @@ public class GameplayInputManager : MonoBehaviour
     [SerializeField]
     private UnityEvent jumpCancel;
 
-    [Header("Move action")]
+    [Header("Horizontal movement action")]
     [SerializeField]
-    private HorizontalMoveAction moveScript;
+    private HorizontalMovement.MovementAction moveScript;
     private float moveDirection;
 
     [Header("Menu action")]

@@ -9,7 +9,7 @@ public class ClimbingInputManager : MonoBehaviour
 {
     [Header("Catch action")]
     [SerializeField]
-    private Climber climber;
+    private Climber.ClimbingAction climber;
 
     [Header("Climbing cancel")]
     [SerializeField]
@@ -28,7 +28,7 @@ public class ClimbingInputManager : MonoBehaviour
 
     private ActionsManager actionsManager;
 
-    private Dictionary<Climber.Direction, Vector2> jumpDirection;
+    private Dictionary<Climber.ClimbingAction.Direction, Vector2> jumpDirection;
 
     [Header("Player inputs mapping")]
     [SerializeField]
@@ -38,10 +38,10 @@ public class ClimbingInputManager : MonoBehaviour
     void Start() {
         actionsManager = GetComponent<ActionsManager>();
 
-        jumpDirection = new Dictionary<Climber.Direction, Vector2>();
-        jumpDirection.Add(Climber.Direction.Right, new Vector2(-1.0f, 0.5f));
-        jumpDirection.Add(Climber.Direction.Left, new Vector2(1.0f, 0.5f));
-        jumpDirection.Add(Climber.Direction.None, Vector2.zero);
+        jumpDirection = new Dictionary<Climber.ClimbingAction.Direction, Vector2>();
+        jumpDirection.Add(Climber.ClimbingAction.Direction.Right, new Vector2(-1.0f, 0.5f));
+        jumpDirection.Add(Climber.ClimbingAction.Direction.Left, new Vector2(1.0f, 0.5f));
+        jumpDirection.Add(Climber.ClimbingAction.Direction.None, Vector2.zero);
     }
     void Update() {
         Move();
@@ -96,7 +96,7 @@ public class ClimbingInputManager : MonoBehaviour
         actionsManager.UpdateAuthorizedAction(ActionsManager.Actions.HorizontalMove, true);
         UpdateActionMap("Gameplay");
     }
-    private void CliffJump(Climber.Direction xDirection) {
+    private void CliffJump(Climber.ClimbingAction.Direction xDirection) {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
             Vector2 yVector = jumpDirection[xDirection];
             climber.CancelClimbing();
@@ -106,7 +106,7 @@ public class ClimbingInputManager : MonoBehaviour
     }
     private void Move() {
         if (actionsManager.ActionIsAvailable(ActionsManager.Actions.HorizontalMove)) {
-            Climber.Direction xDirection = climber.CurrentDirection();
+            Climber.ClimbingAction.Direction xDirection = climber.CurrentDirection();
             if (yDirection != .0f) {
                 if (moveScript.IsInCliffEdge(xDirection, yDirection)) {
                     if (yDirection > 0) {

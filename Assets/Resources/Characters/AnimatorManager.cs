@@ -20,7 +20,7 @@ public class AnimatorManager : MonoBehaviour
 
     [Header("Climbing state")]
     [SerializeField]
-    private Climber climbingState;
+    private Climber.ClimbingAction climbingState;
 
     [Header("Vertical Movement")]
     [SerializeField]

@@ -10,37 +10,31 @@ public class VerticalMoveAction : MonoBehaviour
 
     [Header("Wall distance")]
     [SerializeField]
-    private WallDistance wallDistance;
+    private Climber.DistanceChecker wallDistance;
 
-    private Vertical.DirectionState directionState;
-    private enum MovementType {
-        Running,
-        Walking
-    }
-    private Dictionary<MovementType, float> movementThrustDictionary;
-    private MovementType currentMovementType;
-    private float RUN_THRUST = 50.0f;
-    private float WALK_THRUST = 25.0f;
+    private VerticalMovement.MovementDirection direction;
+    private Dictionary<VerticalMovement.Constants.MovementType, float> movementThrustDictionary;
+    private VerticalMovement.Constants.MovementType currentMovementType;
 
     private bool isMoving;
     public bool IsMoving { get; set; }
 
 #region Unity Functions
     void Start() {
-        directionState = GetComponent<Vertical.DirectionState>();
+        direction = VerticalMovement.MovementDirection.GetInstance();
         InitializeThrustDictionary();
-        currentMovementType = MovementType.Walking;
+        currentMovementType = VerticalMovement.Constants.MovementType.Walking;
         isMoving = false;
     }
 #endregion
 #region Public Functions
     public void Call(float yDirection) {
-        directionState.UpdateDirection(yDirection);
-        Vector3 newVector = new Vector3(.0f, directionState.DirectionInFloat() * movementThrustDictionary[currentMovementType], transform.position.z);
+        direction.UpdateDirection(yDirection);
+        Vector3 newVector = new Vector3(.0f, direction.DirectionInFloat() * movementThrustDictionary[currentMovementType], transform.position.z);
         transform.Translate(newVector * Time.deltaTime);
     }
 
-    public bool IsInCliffEdge(Climber.Direction xDirection, float yDirection) {
+    public bool IsInCliffEdge(Climber.ClimbingAction.Direction xDirection, float yDirection) {
         bool result = true;
         Vector2[] vectorsCollectionCliff = VectorsCollectionCliff(xDirection, yDirection);
         Vector2[] vectorsCollectionTopAndDown = VectorsCollectionTopAndDown(yDirection);
@@ -53,39 +47,40 @@ public class VerticalMoveAction : MonoBehaviour
     }
 
     public void CallRunning() {
-        currentMovementType = MovementType.Running;
+        currentMovementType = VerticalMovement.Constants.MovementType.Running;
     }
 
     public void CallNotRunning() {
-        currentMovementType = MovementType.Walking;
+        currentMovementType = VerticalMovement.Constants.MovementType.Walking;
     }
 #endregion
 #region Private Functions
     private void InitializeThrustDictionary() {
-        movementThrustDictionary = new Dictionary<MovementType, float>();
-        movementThrustDictionary.Add(MovementType.Running, RUN_THRUST);
-        movementThrustDictionary.Add(MovementType.Walking, WALK_THRUST);
+        movementThrustDictionary = new Dictionary<VerticalMovement.Constants.MovementType, float>();
+        movementThrustDictionary.Add(VerticalMovement.Constants.MovementType.Running, VerticalMovement.Constants.RUN_THRUST);
+        movementThrustDictionary.Add(VerticalMovement.Constants.MovementType.Walking, VerticalMovement.Constants.WALK_THRUST);
     }
     // We need to check if the object is in contact with the cliff 
-    private Vector2[] VectorsCollectionCliff(Climber.Direction xDirection, float yDirection) {
-        switch (xDirection)
-        {
-            case Climber.Direction.Left:
-                if(yDirection > 0) {
-                    return new Vector2[1] { new Vector2(-1f, 0.25f) };
-                } else {
-                    return new Vector2[1] { new Vector2(-1f, -0.25f) };
-                }
-                break;
-            default:
-                if(yDirection > 0) {
-                    return new Vector2[1] { new Vector2(1f, 0.25f) };
-                } else {
-                    return new Vector2[1] { new Vector2(1f, -0.25f) };
-                }
-                break;
+    private Vector2[] VectorsCollectionCliff(Climber.ClimbingAction.Direction xDirection, float yDirection) {
+        return new Vector2[1] { new Vector2(CalculateNewX(xDirection), CalculateNewY(yDirection)) };
+    }
+
+    private float CalculateNewX(Climber.ClimbingAction.Direction xDirection) {
+        if (xDirection == Climber.ClimbingAction.Direction.Left) {
+            return - 1f;
+        } else {
+            return 1f;
         }
     }
+
+    private float CalculateNewY(float yDirection) {
+        if(yDirection > 0) {
+            return 0.25f;
+        } else {
+            return -0.25f;
+        }
+    }
+
     // We need to check if the object is in contact with a roof or a floor
     private Vector2[] VectorsCollectionTopAndDown(float yDirection) {
         if (yDirection > 0) {

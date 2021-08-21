@@ -10,42 +10,36 @@ public class VerticalState : MonoBehaviour
 
     [Header("Climber")]
     [SerializeField]
-    private Climber climber;
+    private Climber.ClimbingAction climber;
 
-    public enum States {
-        Falling,
-        Jumping,
-        Standing
-    }
-
-    private States previousState;
-    private States currentState;
-    public States CurrentState { get; set; }
+    private VerticalMovement.Constants.States previousState;
+    private VerticalMovement.Constants.States currentState;
+    public VerticalMovement.Constants.States CurrentState { get; set; }
 
 #region Unity Functions
     void Start() {
-        CurrentState = States.Standing;
+        CurrentState = VerticalMovement.Constants.States.Standing;
         previousState = CurrentState;
     }
 
     void FixedUpdate() {
         if (rb2D.velocity.y < -0.1f && !IsFalling() && !climber.IsClimbing()) {
             previousState = CurrentState;
-            CurrentState = VerticalState.States.Falling;
+            CurrentState = VerticalMovement.Constants.States.Falling;
         }
     }
 #endregion
 #region Public Functions
     public bool IsFalling() {
-        return CurrentState == States.Falling;
+        return CurrentState == VerticalMovement.Constants.States.Falling;
     }
 
     public bool IsJumping() {
-        return CurrentState == States.Jumping;
+        return CurrentState == VerticalMovement.Constants.States.Jumping;
     }
 
     public bool IsStanding() {
-        return CurrentState == States.Standing;
+        return CurrentState == VerticalMovement.Constants.States.Standing;
     }
 #endregion
 }

@@ -120,11 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb06ec8184b2009caffb405fca12028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climber: {fileID: 8104183678540985479}
+  climber: {fileID: 796597884471754438}
   climbingCancel:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8104183678540985479}
+      - m_Target: {fileID: 796597884471754438}
         m_MethodName: CancelClimbing
         m_Mode: 1
         m_Arguments:
@@ -154,7 +154,7 @@ MonoBehaviour:
   climbingStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8104183678540985479}
+      - m_Target: {fileID: 796597884471754438}
         m_MethodName: StartClimbing
         m_Mode: 1
         m_Arguments:
@@ -226,7 +226,7 @@ MonoBehaviour:
   jumpCancel:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3569179625134642271}
+      - m_Target: {fileID: 7893739313458541951}
         m_MethodName: Call
         m_Mode: 1
         m_Arguments:
@@ -237,7 +237,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  moveScript: {fileID: 9134920572593286310}
+  moveScript: {fileID: 7302789115911976598}
   menuScript: {fileID: 1937189169668423056}
   dashScript: {fileID: 7105684221455068206}
   playerInput: {fileID: 5145931101355346448}
@@ -5154,8 +5154,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1434955552472440300}
-  - component: {fileID: 8104183678540985479}
-  - component: {fileID: 3062776748582250774}
+  - component: {fileID: 796597884471754438}
+  - component: {fileID: 6869472889278639776}
   m_Layer: 0
   m_Name: Climber
   m_TagString: Untagged
@@ -5179,7 +5179,7 @@ Transform:
   m_Father: {fileID: 4103918215236985874}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8104183678540985479
+--- !u!114 &796597884471754438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5188,14 +5188,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1474514291226923033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080594ff9e4ac2d5897359139faf4ce4, type: 3}
+  m_Script: {fileID: 11500000, guid: 95fec7a498a561c969546018cad7c8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   go: {fileID: 4103918215236985877}
   horizontalDirection: {fileID: 11400000, guid: 728650caa1f6afe7d839502398530e6d,
     type: 2}
   playerInput: {fileID: 5145931101355346448}
---- !u!114 &3062776748582250774
+--- !u!114 &6869472889278639776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5204,13 +5204,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1474514291226923033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81a643c6666e75232a4319e416663082, type: 3}
+  m_Script: {fileID: 11500000, guid: a62b1512750f3dbf5b8a3798c3b3baa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go: {fileID: 4103918215236985877}
   wallLayer:
     serializedVersion: 2
     m_Bits: 1048576
+  data: {fileID: 11400000, guid: 5bc278afdec03c7debe97983b5125179, type: 2}
+  transform: {fileID: 4103918215236985874}
+  collider: {fileID: 4275036704169992001}
 --- !u!1 &3476699450308117920
 GameObject:
   m_ObjectHideFlags: 0
@@ -5730,7 +5732,7 @@ MonoBehaviour:
     type: 2}
   horizontalState: {fileID: 11400000, guid: 60bf06beb9867197fb66cb0ae8c6b954, type: 2}
   yState: {fileID: 4103918216960457156}
-  climbingState: {fileID: 0}
+  climbingState: {fileID: 796597884471754438}
   verticalMoveState: {fileID: 2602235143676969020}
 --- !u!60 &4275036704169992001
 PolygonCollider2D:
@@ -5774,14 +5776,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4103918216960457159}
-  - component: {fileID: 8241902439082641884}
-  - component: {fileID: 2648477009667304507}
   - component: {fileID: 4601438489145249790}
   - component: {fileID: 4103918216960457158}
   - component: {fileID: 8324385167803110054}
   - component: {fileID: 2602235143676969020}
   - component: {fileID: 4103918216960457156}
-  - component: {fileID: 3569179625134642271}
+  - component: {fileID: 6535769079635338232}
+  - component: {fileID: 7893739313458541951}
   m_Layer: 0
   m_Name: Vertical
   m_TagString: Bottom
@@ -5803,31 +5804,6 @@ Transform:
   m_Father: {fileID: 4103918215236985874}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8241902439082641884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4103918216960457160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5e2825648b495056a9849c5273df881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb2D: {fileID: 4103918215236985873}
---- !u!114 &2648477009667304507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4103918216960457160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc1361157fbaab4caa776c8f02dc2af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4601438489145249790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5890,7 +5866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 4103918215236985874}
-  wallDistance: {fileID: 3062776748582250774}
+  wallDistance: {fileID: 6869472889278639776}
 --- !u!114 &4103918216960457156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5904,8 +5880,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 4103918215236985873}
-  climber: {fileID: 0}
---- !u!114 &3569179625134642271
+  climber: {fileID: 796597884471754438}
+--- !u!114 &6535769079635338232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5914,11 +5890,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4103918216960457160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816712959b682c9b7a8a4fb60af9c5b5, type: 3}
+  m_Script: {fileID: 11500000, guid: bf6701bf3b48c9dd48300e1d2cc5198e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 4103918215236985873}
-  velocity_cancel_coefficient: 0.5
+--- !u!114 &7893739313458541951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4103918216960457160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3a322dd6f21dfa8aca1118735b1e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 4103918215236985873}
 --- !u!1 &5492009678619022091
 GameObject:
   m_ObjectHideFlags: 0
@@ -5928,9 +5916,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4863561234413854055}
-  - component: {fileID: 9134920572593286310}
+  - component: {fileID: 7302789115911976598}
   m_Layer: 0
-  m_Name: Horizontal
+  m_Name: Horizontal Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5950,7 +5938,7 @@ Transform:
   m_Father: {fileID: 4103918215236985874}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9134920572593286310
+--- !u!114 &7302789115911976598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5959,15 +5947,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5492009678619022091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8371e2d58370fca192b8c702c3ff001, type: 3}
+  m_Script: {fileID: 11500000, guid: deaadc2bcc8d5633291247d702234411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go: {fileID: 4103918215236985877}
-  dust: {fileID: 8976612896464075559}
+  rb2D: {fileID: 4103918215236985873}
   currentMovementState: {fileID: 11400000, guid: 60bf06beb9867197fb66cb0ae8c6b954,
     type: 2}
   horizontalDirection: {fileID: 11400000, guid: 728650caa1f6afe7d839502398530e6d,
     type: 2}
+  isRunning: 0
 --- !u!1 &5735500187090661802
 GameObject:
   m_ObjectHideFlags: 0
