@@ -4,9 +4,11 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName="HorizontalDirectionState", menuName="ScriptableObjects/HorizontalMovement/MovementDirection", order=1)]
 /// <summary>
-///     Concern : State machine for horizontal direction.
+///     Concern : State machine for horizontal direction: It indicates the current horizontal direction of the object
 ///     Dependency :
 ///         - HorizontalMovement.Constants 
+///         - DirectionAdapters.HorizontalAxisDictionary
+///         - DirectionAdapters.AnimatorDictionary
 /// </summary>
 public class MovementDirection : ScriptableObject
 {

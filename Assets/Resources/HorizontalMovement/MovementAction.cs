@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace HorizontalMovement {
+    /// <summary>
+    ///     Concern : Facade called by the gameplay input to add horizontal movement in the object.
+    ///     Dependency :
+    ///         - HorizontalMovement.Constants 
+    ///         - HorizontalMovement.MovementState
+    ///         - HorizontalMovement.MovementDirection
+    ///         - HorizontalMovement.Deceleration
+    ///         - HorizontalMovement.Acceleration
+    /// </summary>
     public class MovementAction : MonoBehaviour
     {
         [Header("Rigidbody")]

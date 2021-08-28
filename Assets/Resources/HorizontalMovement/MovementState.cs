@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName="MovementState", menuName="ScriptableObjects/HorizontalMovement/MovementState", order=1)]
 /// <summary>
-///     Concern : State machine for horizontal movement.
+///     Concern : State machine for horizontal movement: It indicates the current horizontal state of the object.
 ///     Dependency :
 ///         - HorizontalMovement.Constants 
 /// </summary>
@@ -30,9 +30,9 @@ public class MovementState : ScriptableObject
 
     public void UpdateHorizontalState(bool isRunning) {
         if (isRunning) {
-            currentState = HorizontalMovement.Constants.MovementStates.Running;
+            UpdateCurrentState(HorizontalMovement.Constants.MovementStates.Running);
         } else {
-            currentState = HorizontalMovement.Constants.MovementStates.Walking;
+            UpdateCurrentState(HorizontalMovement.Constants.MovementStates.Walking);
         }
     }
 
